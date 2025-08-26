@@ -58,6 +58,12 @@
             text-decoration: none;
         }
         
+        .logo-image {
+            height: 40px;
+            width: auto;
+            max-width: 120px;
+        }
+        
         .logo-text {
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -96,6 +102,65 @@
             height: 16px;
             cursor: pointer;
             border: 1px solid #333;
+        }
+        
+        /* Header Actions Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .auth-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .auth-link {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--hrc-red);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-link:hover {
+            background-color: var(--hrc-red);
+            color: white;
+        }
+        
+        .user-menu {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .user-link {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .user-link:hover {
+            background-color: var(--hrc-red);
+            color: white;
+        }
+        
+        .user-link i {
+            font-size: 1rem;
         }
         
         /* Search and Navigation Bar */
@@ -473,20 +538,12 @@
         <div class="header-content">
             <div class="logo-section">
                 <a href="${pageContext.request.contextPath}/events" class="logo">
-                    <i class="bi bi-music-note-beamed"></i>
+                    <img src="${pageContext.request.contextPath}/img/HRC-Logo.png" alt="Hanoi Rock City" class="logo-image">
                 </a>
                 <div class="logo-text">Hanoi Rock City</div>
             </div>
             
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="${pageContext.request.contextPath}/events">Trang Chủ</a></li>
-                    <li><a href="#">Về Chúng Tôi</a></li>
-                    <li><a href="${pageContext.request.contextPath}/events">Sự Kiện Sắp Tới</a></li>
-                    <li><a href="#">Cities in Sync</a></li>
-                    <li><a href="#">Quà Lưu Niệm</a></li>
-                </ul>
-            </nav>
+            
             
             <div class="header-actions">
                 <c:choose>
@@ -622,10 +679,16 @@
                         </div>
                     </div>
                     
-                    <div class="event-image">
-                        <i class="bi bi-music-note-beamed"></i>
-                    </div>
-                </div>
+                                         <div class="event-image">
+                         <i class="bi bi-music-note-beamed"></i>
+                     </div>
+                     
+                     <div class="event-actions">
+                         <a href="${pageContext.request.contextPath}/event-detail?id=${event.id}" class="btn btn-primary">
+                             <i class="bi bi-eye"></i> Xem Chi Tiết
+                         </a>
+                     </div>
+                 </div>
             </c:forEach>
         </c:if>
         

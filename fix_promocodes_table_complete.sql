@@ -22,7 +22,7 @@ DECLARE @constraint_name NVARCHAR(128)
 DECLARE @sql NVARCHAR(MAX)
 
 DECLARE constraint_cursor CURSOR FOR
-SELECT CONSTRAINT_NAME 
+SELECT cc.CONSTRAINT_NAME 
 FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc
 JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu ON cc.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
 WHERE ccu.TABLE_NAME = 'PromoCodes' AND ccu.COLUMN_NAME = 'discount_type'
@@ -42,20 +42,21 @@ CLOSE constraint_cursor
 DEALLOCATE constraint_cursor
 GO
 
--- 3. Increase discount_type column size to accommodate 'FIXED_AMOUNT'
+-- 3. Update existing records to have created_at if they don't have it
+UPDATE dbo.PromoCodes SET created_at = GETDATE() WHERE created_at IS NULL;
+PRINT 'Updated existing records with created_at timestamp';
+GO
+
+-- 4. Increase discount_type column size to accommodate 'FIXED_AMOUNT'
 ALTER TABLE dbo.PromoCodes ALTER COLUMN discount_type VARCHAR(20) NOT NULL;
 PRINT 'Updated discount_type column size to VARCHAR(20)';
 GO
 
--- 4. Add new CHECK constraint to allow both PERCENTAGE and FIXED_AMOUNT
+-- 5. Add new CHECK constraint to allow both PERCENTAGE and FIXED_AMOUNT
 ALTER TABLE dbo.PromoCodes ADD CONSTRAINT CK_PromoCodes_discount_type 
     CHECK (discount_type IN ('PERCENTAGE', 'FIXED_AMOUNT'));
 PRINT 'Added new CHECK constraint for discount_type values (PERCENTAGE, FIXED_AMOUNT)';
 GO
-
--- 5. Update existing records to have created_at if they don't have it
-UPDATE dbo.PromoCodes SET created_at = GETDATE() WHERE created_at IS NULL;
-PRINT 'Updated existing records with created_at timestamp';
 
 -- 6. Verify the changes
 SELECT 
@@ -67,8 +68,8 @@ FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'PromoCodes' AND COLUMN_NAME IN ('discount_type', 'created_at');
 
 SELECT 
-    CONSTRAINT_NAME,
-    CHECK_CLAUSE
+    cc.CONSTRAINT_NAME,
+    cc.CHECK_CLAUSE
 FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc
 JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu ON cc.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
 WHERE ccu.TABLE_NAME = 'PromoCodes' AND ccu.COLUMN_NAME = 'discount_type';

@@ -9,16 +9,216 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <style>
+        :root {
+            --hrc-red: #e74c3c;
+            --hrc-dark: #1a1a1a;
+            --hrc-gray: #2c2c2c;
+            --hrc-light-gray: #f8f9fa;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: black;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            max-width: 120px;
+        }
+        
+        .logo-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--hrc-red);
+        }
+        
+        .language-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .flag {
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        
+        /* Header Actions Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .auth-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .auth-link {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--hrc-red);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-link:hover {
+            background-color: var(--hrc-red);
+            color: white;
+        }
+        
+        .user-menu {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .user-link {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .user-link:hover {
+            background-color: var(--hrc-red);
+            color: white;
+        }
+        
+        .user-link i {
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body class="bg-light">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/events">
-                <i class="bi bi-music-note-beamed"></i> Hanoi Rock City
-            </a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <a href="${pageContext.request.contextPath}/events" class="logo">
+                    <img src="${pageContext.request.contextPath}/img/HRC-Logo.png" alt="Hanoi Rock City" class="logo-image">
+                </a>
+                <div class="logo-text">Hanoi Rock City</div>
+            </div>
+            
+            
+            
+            <div class="header-actions">
+                <c:choose>
+                    <c:when test="${empty sessionScope.userId}">
+                        <!-- Guest user - show login/register -->
+                        <div class="auth-links">
+                            <a href="${pageContext.request.contextPath}/login" class="auth-link">Đăng Nhập</a>
+                            <a href="${pageContext.request.contextPath}/register" class="auth-link">Đăng Ký</a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- Logged in user - show user menu and orders -->
+                        <div class="user-menu">
+                            <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
+                                <a href="${pageContext.request.contextPath}/cart" class="user-link">
+                                    <i class="bi bi-cart3"></i> Giỏ Hàng
+                                </a>
+                                <a href="${pageContext.request.contextPath}/orders" class="user-link">
+                                    <i class="bi bi-list-ul"></i> Đơn Hàng Của Tôi
+                                </a>
+                            </c:if>
+                            <c:if test="${sessionScope.userRole eq 'ADMIN' || sessionScope.userRole eq 'STAFF'}">
+                                <a href="${pageContext.request.contextPath}/admin/orders" class="user-link">
+                                    <i class="bi bi-gear"></i> Quản Lý Đơn Hàng
+                                </a>
+                            </c:if>
+                            <a href="${pageContext.request.contextPath}/logout" class="user-link">
+                                <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                
+                <div class="language-selector">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRDAwMDAwIi8+CjxwYXRoIGQ9Ik0xMiA0TDE0IDhIMTBMOCA0SDZMMTAgOEg2TDEyIDEyTDE4IDhIMTRMMTggNEgxNkwxMiA4SDEwTDEyIDRaIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Vietnamese" class="flag">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDAwMDgwIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIzIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI2IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI5IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIxMiIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iOCIgZmlsbD0iIzAwMDA4MCIvPgo8ZyBmaWxsPSIjRkZGRkZGIj4KPGNpcmNsZSBjeD0iNSIgY3k9IjQiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI3IiBjeT0iMyIgcj0iMC41Ii8+CjxjaXJjbGUgY3g9IjkiIGN5PSI0IiByPSIwLjUiLz4KPGNpcmNsZSBjeD0iOCIgY3k9IjYiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iMC41Ii8+CjwvZz4KPC9zdmc+Cg==" alt="English" class="flag">
+                </div>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
     <div class="container py-5">
@@ -61,17 +261,7 @@
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
                             
-                            <div class="mb-4">
-                                <label for="userType" class="form-label">
-                                    <i class="bi bi-person"></i> Login As
-                                </label>
-                                <select id="userType" name="userType" class="form-select" required>
-                                    <option value="">Select user type...</option>
-                                    <option value="customer">Customer</option>
-                                    <option value="staff">Staff</option>
-                                    <option value="admin">Admin</option>
-                                </select>
-                            </div>
+                            
                             
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">
