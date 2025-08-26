@@ -562,9 +562,9 @@
                         <div class="order-header">
                             <div>
                                 <div class="order-number">Đơn Hàng #${order.id}</div>
-                                <div class="order-date">
-                                    ${order.createdAt}
-                                </div>
+                                                                 <div class="order-date">
+                                     ${order.createdAt}
+                                 </div>
                             </div>
                             <div class="status-badge 
                                 <c:choose>

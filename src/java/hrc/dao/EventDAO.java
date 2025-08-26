@@ -234,4 +234,21 @@ public class EventDAO {
         
         return events;
     }
+    
+    public int getTotalEvents() {
+        String sql = "SELECT COUNT(*) FROM Events";
+        
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error getting total events count", e);
+        }
+        
+        return 0;
+    }
 }
