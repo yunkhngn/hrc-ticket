@@ -218,3 +218,37 @@ Hanoi Rock City is a premier venue and event organizer for rock concerts in Hano
 ---
 
 **Rock on! 🤘**
+
+
+Prompt:
+Continue HRC Project Development
+I'm working on a Java web project named HRC (Hanoi Rock City) - a concert ticketing system. The project is built with Java 17, Jakarta EE 5.0, Apache Ant, Tomcat 10, and MSSQL.
+Current Status:
+The project is fully functional with MVC architecture
+Database schema is complete with all tables (Users, Customers, Events, Venues, Artists, etc.)
+All DAO classes, services, and controllers are implemented
+Role-based authentication (ADMIN, STAFF, CUSTOMER) is working
+Frontend has been redesigned with modern Bootstrap 5 and rock theme (red/black)
+What was just completed:
+Fixed blank page issue on events.jsp caused by LocalDateTime formatting
+Updated events.jsp to use direct EL expressions instead of fmt:formatDate
+The events page is now working and displaying properly
+Current Issue:
+The header navigation is missing login/register and order management links. The user is asking "where is my login and register order" - they can't see these navigation elements in the header.
+Next Task:
+Add the missing login/register and order management links to the header navigation in events.jsp. The header currently has:
+Logo and navigation links on the left
+Language selector on the right
+But it's missing:
+Login/Register links
+Order management links (for logged-in users)
+User account dropdown (for logged-in users)
+Technical Context:
+Use JSTL to check user session and role
+Links should be role-appropriate (customers see "My Orders", admins see "Admin Dashboard")
+Follow the existing red/black rock theme
+No emoji characters
+Use Bootstrap 5 styling
+Files to modify:
+web/WEB-INF/views/events.jsp - add missing navigation elements to header
+Please continue from where we left off and add the missing login/register and order management navigation to the header
