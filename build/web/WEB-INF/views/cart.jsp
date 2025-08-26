@@ -769,7 +769,7 @@
                         
                         <div class="summary-actions">
                             <a href="${pageContext.request.contextPath}/events" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Tiếp Tục Mua Sắm
+                                <i class="bi bi-arrow-left"></i> Tiếp Tục Xem Vé
                             </a>
                             <a href="${pageContext.request.contextPath}/checkout" class="btn btn-success">
                                 <i class="bi bi-credit-card"></i> Thanh Toán
