@@ -49,7 +49,7 @@
                     <p><strong>Valid From:</strong> 
                         <c:choose>
                             <c:when test="${promoCode.startAt != null}">
-                                <fmt:formatDateTime value="${promoCode.startAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                ${promoCode.startAt}
                             </c:when>
                             <c:otherwise>No start date</c:otherwise>
                         </c:choose>
@@ -57,7 +57,7 @@
                     <p><strong>Valid Until:</strong> 
                         <c:choose>
                             <c:when test="${promoCode.endAt != null}">
-                                <fmt:formatDateTime value="${promoCode.endAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                ${promoCode.endAt}
                             </c:when>
                             <c:otherwise>No end date</c:otherwise>
                         </c:choose>
@@ -65,7 +65,7 @@
                     <p><strong>Created:</strong> 
                         <c:choose>
                             <c:when test="${promoCode.createdAt != null}">
-                                <fmt:formatDateTime value="${promoCode.createdAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                ${promoCode.createdAt}
                             </c:when>
                             <c:otherwise>Unknown</c:otherwise>
                         </c:choose>

@@ -15,12 +15,26 @@ BEGIN
 END
 GO
 
--- 2. Increase discount_type column size to accommodate 'FIXED_AMOUNT'
+-- 2. Drop the CHECK constraint if it exists
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS WHERE CONSTRAINT_NAME = 'CK__PromoCode__disco__5BE2A6F2')
+BEGIN
+    ALTER TABLE dbo.PromoCodes DROP CONSTRAINT CK__PromoCode__disco__5BE2A6F2;
+    PRINT 'Dropped existing CHECK constraint on discount_type column';
+END
+GO
+
+-- 3. Increase discount_type column size to accommodate 'FIXED_AMOUNT'
 ALTER TABLE dbo.PromoCodes ALTER COLUMN discount_type VARCHAR(20) NOT NULL;
 PRINT 'Updated discount_type column size to VARCHAR(20)';
 GO
 
--- 3. Update existing records to have created_at if they don't have it
+-- 4. Add new CHECK constraint to allow both PERCENTAGE and FIXED_AMOUNT
+ALTER TABLE dbo.PromoCodes ADD CONSTRAINT CK_PromoCodes_discount_type 
+    CHECK (discount_type IN ('PERCENTAGE', 'FIXED_AMOUNT'));
+PRINT 'Added new CHECK constraint for discount_type values';
+GO
+
+-- 5. Update existing records to have created_at if they don't have it
 UPDATE dbo.PromoCodes SET created_at = GETDATE() WHERE created_at IS NULL;
 PRINT 'Updated existing records with created_at timestamp';
 
