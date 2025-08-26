@@ -122,22 +122,43 @@
             align-items: center;
         }
         
-        .auth-link {
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--hrc-red);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .auth-link:hover {
-            background-color: var(--hrc-red);
-            color: white;
-        }
+                 .auth-link {
+             color: white;
+             text-decoration: none;
+             text-transform: uppercase;
+             font-size: 0.9rem;
+             font-weight: 600;
+             padding: 0.75rem 1.5rem;
+             border-radius: 8px;
+             transition: all 0.3s ease;
+             display: inline-block;
+             min-width: 120px;
+             text-align: center;
+         }
+         
+         .auth-link.login {
+             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+             border: 2px solid var(--hrc-red);
+             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+         }
+         
+         .auth-link.login:hover {
+             background: linear-gradient(135deg, #c0392b, #a93226);
+             transform: translateY(-2px);
+             box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+         }
+         
+         .auth-link.register {
+             background: transparent;
+             border: 2px solid transparent;
+             color: white;
+         }
+         
+         .auth-link.register:hover {
+             background: rgba(255, 255, 255, 0.1);
+             border-color: rgba(255, 255, 255, 0.3);
+             transform: translateY(-1px);
+         }
         
         .user-menu {
             display: flex;
@@ -145,28 +166,43 @@
             align-items: center;
         }
         
-        .user-link {
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 500;
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .user-link:hover {
-            background-color: var(--hrc-red);
-            color: white;
-        }
-        
-        .user-link i {
-            font-size: 1rem;
-        }
+                 .user-link {
+             color: white;
+             text-decoration: none;
+             text-transform: uppercase;
+             font-size: 0.9rem;
+             font-weight: 600;
+             padding: 0.75rem 1.5rem;
+             border-radius: 8px;
+             transition: all 0.3s ease;
+             display: flex;
+             align-items: center;
+             gap: 0.75rem;
+             min-width: 140px;
+             justify-content: center;
+         }
+         
+         .user-link:hover {
+             background: rgba(255, 255, 255, 0.1);
+             transform: translateY(-1px);
+         }
+         
+         .user-link i {
+             font-size: 1.1rem;
+         }
+         
+         .user-link.logout {
+             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+             border: 2px solid var(--hrc-red);
+             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+             font-weight: 700;
+         }
+         
+         .user-link.logout:hover {
+             background: linear-gradient(135deg, #c0392b, #a93226);
+             transform: translateY(-2px);
+             box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+         }
         
                  /* Event Detail Styles */
                    .event-detail-container {
@@ -611,10 +647,10 @@
                 <c:choose>
                     <c:when test="${empty sessionScope.userId}">
                         <!-- Guest user - show login/register -->
-                        <div class="auth-links">
-                            <a href="${pageContext.request.contextPath}/login" class="auth-link">Đăng Nhập</a>
-                            <a href="${pageContext.request.contextPath}/register" class="auth-link">Đăng Ký</a>
-                        </div>
+                                                 <div class="auth-links">
+                             <a href="${pageContext.request.contextPath}/login" class="auth-link login">Đăng Nhập</a>
+                             <a href="${pageContext.request.contextPath}/register" class="auth-link register">Đăng Ký</a>
+                         </div>
                     </c:when>
                     <c:otherwise>
                         <!-- Logged in user - show user menu and orders -->
@@ -632,9 +668,9 @@
                                     <i class="bi bi-gear"></i> Quản Lý Đơn Hàng
                                 </a>
                             </c:if>
-                            <a href="${pageContext.request.contextPath}/logout" class="user-link">
-                                <i class="bi bi-box-arrow-right"></i> Đăng Xuất
-                            </a>
+                                                         <a href="${pageContext.request.contextPath}/logout" class="user-link logout">
+                                 <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+                             </a>
                         </div>
                     </c:otherwise>
                 </c:choose>

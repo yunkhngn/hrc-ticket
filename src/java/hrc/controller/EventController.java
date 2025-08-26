@@ -36,8 +36,16 @@ public class EventController extends HttpServlet {
         String pathInfo = request.getServletPath();
         
         if ("/events".equals(pathInfo)) {
-            // List public events (excluding drafts)
-            List<Event> events = eventService.getPublicEvents();
+            // Get search parameter
+            String searchQuery = request.getParameter("search");
+            
+            // List public events (excluding drafts) with optional search
+            List<Event> events;
+            if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+                events = eventService.searchEventsByName(searchQuery.trim());
+            } else {
+                events = eventService.getPublicEvents();
+            }
             
             // Create a map to store artists for each event
             Map<Long, List<EventArtist>> eventArtistsMap = new HashMap<>();

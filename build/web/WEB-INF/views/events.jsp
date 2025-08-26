@@ -155,22 +155,43 @@
             align-items: center;
         }
         
-        .auth-link {
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--hrc-red);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .auth-link:hover {
-            background-color: var(--hrc-red);
-            color: white;
-        }
+                 .auth-link {
+             color: white;
+             text-decoration: none;
+             text-transform: uppercase;
+             font-size: 0.9rem;
+             font-weight: 600;
+             padding: 0.75rem 1.5rem;
+             border-radius: 8px;
+             transition: all 0.3s ease;
+             display: inline-block;
+             min-width: 120px;
+             text-align: center;
+         }
+         
+         .auth-link.login {
+             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+             border: 2px solid var(--hrc-red);
+             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+         }
+         
+         .auth-link.login:hover {
+             background: linear-gradient(135deg, #c0392b, #a93226);
+             transform: translateY(-2px);
+             box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+         }
+         
+         .auth-link.register {
+             background: transparent;
+             border: 2px solid transparent;
+             color: white;
+         }
+         
+         .auth-link.register:hover {
+             background: rgba(255, 255, 255, 0.1);
+             border-color: rgba(255, 255, 255, 0.3);
+             transform: translateY(-1px);
+         }
         
         .user-menu {
             display: flex;
@@ -201,6 +222,62 @@
             font-size: 1rem;
         }
         
+        /* Banner Section */
+        .banner-section {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.8), rgba(26, 26, 26, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .banner-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .banner-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            opacity: 0.9;
+        }
+        
         /* Search and Navigation Bar */
         .search-nav-bar {
             background-color: white;
@@ -215,6 +292,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+        
+        .search-form {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -256,87 +336,7 @@
             background-color: #0056b3;
         }
         
-        .view-tabs {
-            display: flex;
-            gap: 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .view-tab {
-            padding: 0.75rem 1rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        
-        .view-tab.active {
-            background-color: #333;
-            color: white;
-        }
-        
-        .view-tab:hover:not(.active) {
-            background-color: #f8f9fa;
-        }
-        
-        /* Event Navigation */
-        .event-nav {
-            background-color: white;
-            border-bottom: 1px solid #eee;
-            padding: 1rem 0;
-        }
-        
-        .event-nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .date-nav {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .nav-arrow {
-            background: none;
-            border: 1px solid #ddd;
-            padding: 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        .today-btn {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .event-filter {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .filter-dropdown {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+
         
         /* Event List Styles */
         .event-list-container {
@@ -351,6 +351,26 @@
             color: var(--hrc-dark);
             margin-bottom: 2rem;
             text-align: center;
+        }
+        
+        .clear-search-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--hrc-red);
+            text-decoration: none;
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--hrc-red);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-search-link:hover {
+            background-color: var(--hrc-red);
+            color: white;
+            transform: translateY(-1px);
         }
         
         .event-list {
@@ -907,10 +927,10 @@
                 <c:choose>
                     <c:when test="${empty sessionScope.userId}">
                         <!-- Guest user - show login/register -->
-                        <div class="auth-links">
-                            <a href="${pageContext.request.contextPath}/login" class="auth-link">Đăng Nhập</a>
-                            <a href="${pageContext.request.contextPath}/register" class="auth-link">Đăng Ký</a>
-                        </div>
+                                                 <div class="auth-links">
+                             <a href="${pageContext.request.contextPath}/login" class="auth-link login">Đăng Nhập</a>
+                             <a href="${pageContext.request.contextPath}/register" class="auth-link register">Đăng Ký</a>
+                         </div>
                     </c:when>
                     <c:otherwise>
                         <!-- Logged in user - show user menu and orders -->
@@ -940,46 +960,47 @@
         </div>
     </header>
 
-    <!-- Search and Navigation Bar -->
-    <div class="search-nav-bar">
-        <div class="search-container">
-            <div class="search-box">
-                <i class="bi bi-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Tìm kiếm các sự kiện">
-            </div>
-            <button class="search-btn">Tìm Các sự kiện</button>
-            <div class="view-tabs">
-                <button class="view-tab active">Danh sách</button>
-                <button class="view-tab">Tháng</button>
-                <button class="view-tab">Ngày</button>
+    <!-- Banner Section -->
+    <div class="banner-section">
+        <div class="banner-container">
+            <img src="${pageContext.request.contextPath}/img/HRC-banner.jpg" alt="Hanoi Rock City Banner" class="banner-image">
+            <div class="banner-overlay">
+                <div class="banner-content">
+                    <h1 class="banner-title">Hanoi Rock City</h1>
+                    <p class="banner-subtitle">Khám phá những sự kiện âm nhạc tuyệt vời nhất</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Event Navigation -->
-    <div class="event-nav">
-        <div class="event-nav-container">
-            <div class="date-nav">
-                <button class="nav-arrow">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button class="today-btn">Ngày hôm nay</button>
-                <button class="nav-arrow">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
-            <div class="event-filter">
-                <span>Sắp tới</span>
-                <button class="filter-dropdown">
-                    <i class="bi bi-chevron-down"></i>
-                </button>
-            </div>
+    <!-- Search Bar -->
+    <div class="search-nav-bar">
+        <div class="search-container">
+            <form action="${pageContext.request.contextPath}/events" method="get" class="search-form">
+                <div class="search-box">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" name="search" class="search-input" placeholder="Tìm kiếm các sự kiện" value="${param.search}">
+                </div>
+                <button type="submit" class="search-btn">Tìm Các sự kiện</button>
+            </form>
         </div>
     </div>
 
     <!-- Main Content -->
     <main class="event-list-container">
-        <h1 class="event-list-title">Các sự kiện sắp tới</h1>
+        <h1 class="event-list-title">
+            <c:choose>
+                <c:when test="${not empty param.search}">
+                    Kết quả tìm kiếm cho "${param.search}"
+                    <a href="${pageContext.request.contextPath}/events" class="clear-search-link">
+                        <i class="bi bi-x-circle"></i> Xóa tìm kiếm
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    Các sự kiện sắp tới
+                </c:otherwise>
+            </c:choose>
+        </h1>
         
         <c:if test="${not empty success}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1021,7 +1042,15 @@
                                     <span class="event-status">${event.status}</span>
                                 </h3>
                                 <div class="event-venue">
-                                    Venue ID: ${event.venueId}
+                                    <c:set var="venue" value="${eventVenuesMap[event.id]}" />
+                                    <c:choose>
+                                        <c:when test="${not empty venue}">
+                                            ${venue.name}
+                                        </c:when>
+                                        <c:otherwise>
+                                            Venue ID: ${event.venueId}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <p class="event-description">${event.description}</p>
                                 <div class="event-artists">

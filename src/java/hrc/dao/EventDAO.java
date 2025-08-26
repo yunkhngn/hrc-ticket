@@ -197,4 +197,41 @@ public class EventDAO {
         
         return false;
     }
+    
+    public List<Event> searchByName(String searchQuery) {
+        List<Event> events = new ArrayList<>();
+        String sql = "SELECT id, venue_id, name, description, start_at, end_at, status, min_age, created_at FROM Events WHERE status != 'DRAFT' AND name LIKE ? ORDER BY start_at DESC";
+        
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, "%" + searchQuery + "%");
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Event event = new Event();
+                    event.setId(rs.getLong("id"));
+                    event.setVenueId(rs.getLong("venue_id"));
+                    event.setName(rs.getString("name"));
+                    event.setDescription(rs.getString("description"));
+                    event.setStartAt(rs.getTimestamp("start_at").toLocalDateTime());
+                    
+                    Timestamp endAt = rs.getTimestamp("end_at");
+                    if (endAt != null) {
+                        event.setEndAt(endAt.toLocalDateTime());
+                    }
+                    
+                    event.setStatus(rs.getString("status"));
+                    event.setMinAge(rs.getInt("min_age"));
+                    event.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    
+                    events.add(event);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching events by name: " + searchQuery, e);
+        }
+        
+        return events;
+    }
 }

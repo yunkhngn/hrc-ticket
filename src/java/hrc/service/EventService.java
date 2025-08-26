@@ -24,6 +24,10 @@ public class EventService {
         return eventDAO.listPublicEvents();
     }
     
+    public List<Event> searchEventsByName(String searchQuery) {
+        return eventDAO.searchByName(searchQuery);
+    }
+    
     public Event getEventById(Long id) {
         return eventDAO.findById(id);
     }
