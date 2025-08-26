@@ -65,11 +65,17 @@
         <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
             <a href="${pageContext.request.contextPath}/cart">View Cart</a>
         </c:if>
-        <c:if test="${sessionScope.userRole eq 'ADMIN' || sessionScope.userRole eq 'STAFF'}">
+        <c:if test="${sessionScope.userRole eq 'ADMIN'}">
             <a href="${pageContext.request.contextPath}/admin/events">Manage Events</a>
         </c:if>
-        <c:if test="${not empty sessionScope.userRole}">
+        
+        <c:if test="${sessionScope.userRole eq 'STAFF'}">
+            <a href="${pageContext.request.contextPath}/admin/orders">Manage Orders</a>
+        </c:if>
+        <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
             <a href="${pageContext.request.contextPath}/orders">My Orders</a>
+        </c:if>
+        <c:if test="${not empty sessionScope.userRole}">
             <a href="${pageContext.request.contextPath}/logout">Logout</a>
         </c:if>
         <c:if test="${empty sessionScope.userRole}">

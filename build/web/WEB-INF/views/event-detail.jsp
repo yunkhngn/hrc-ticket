@@ -78,8 +78,14 @@
         <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
             <a href="${pageContext.request.contextPath}/cart" style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">🛒 View Cart</a>
         </c:if>
-        <c:if test="${not empty sessionScope.userRole}">
+        <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
             <a href="${pageContext.request.contextPath}/orders" style="display: inline-block; padding: 10px 20px; background: #17a2b8; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">📋 My Orders</a>
+        </c:if>
+        <c:if test="${sessionScope.userRole eq 'STAFF'}">
+            <a href="${pageContext.request.contextPath}/admin/orders" style="display: inline-block; padding: 10px 20px; background: #17a2b8; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">📋 Manage Orders</a>
+        </c:if>
+        <c:if test="${sessionScope.userRole eq 'ADMIN'}">
+            <a href="${pageContext.request.contextPath}/admin/orders" style="display: inline-block; padding: 10px 20px; background: #17a2b8; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">📋 Manage Orders</a>
         </c:if>
     </div>
 </body>
