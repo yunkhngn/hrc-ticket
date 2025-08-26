@@ -314,27 +314,47 @@
             color: #333;
         }
         
-        .event-item {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding: 1rem;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
+                 .event-item {
+             display: flex;
+             align-items: flex-start;
+             gap: 2rem;
+             margin-bottom: 2rem;
+             padding: 0;
+             border-radius: 0;
+             transition: all 0.3s ease;
+             cursor: pointer;
+             border: none;
+             border-bottom: 1px solid #eee;
+             position: relative;
+             background: transparent;
+             box-shadow: none;
+             overflow: visible;
+         }
+         
+         .event-item-link {
+             text-decoration: none;
+             color: inherit;
+             display: block;
+         }
+         
+         .event-item:hover {
+             transform: translateY(-4px);
+             box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
+             border-color: var(--hrc-red);
+         }
         
-        .event-item:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .event-date {
-            min-width: 80px;
-            text-align: center;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
+                 .event-date {
+             min-width: 120px;
+             text-align: left;
+             padding: 0;
+             background-color: transparent;
+             border-radius: 0;
+             border: none;
+             flex-shrink: 0;
+             display: flex;
+             flex-direction: column;
+             justify-content: flex-start;
+         }
         
         .event-month {
             font-size: 0.8rem;
@@ -354,54 +374,74 @@
             color: #666;
         }
         
-        .event-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+                 .event-details {
+             flex: 1;
+             display: flex;
+             flex-direction: column;
+             gap: 0.75rem;
+             padding: 0;
+             justify-content: flex-start;
+         }
         
-        .event-time {
-            font-size: 0.9rem;
-            color: #666;
-        }
+                 .event-time {
+             font-size: 0.9rem;
+             color: #666;
+             font-weight: 500;
+         }
         
-        .event-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #333;
-            margin: 0;
-        }
+                 .event-title {
+             font-size: 1.4rem;
+             font-weight: 700;
+             color: #333;
+             margin: 0;
+             line-height: 1.3;
+         }
         
-        .event-venue {
-            font-size: 0.9rem;
-            color: #666;
-        }
+                 .event-venue {
+             font-size: 0.95rem;
+             color: #666;
+             font-weight: 500;
+         }
+         
+         .event-description {
+             font-size: 0.9rem;
+             color: #555;
+             line-height: 1.5;
+             margin: 0.5rem 0;
+         }
+         
+         .event-artists {
+             font-size: 0.9rem;
+             color: var(--hrc-red);
+             font-weight: 500;
+         }
         
-        .event-description {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.5;
-            margin: 0.5rem 0;
-        }
+                 .event-description {
+             font-size: 0.9rem;
+             color: #555;
+             line-height: 1.5;
+             margin: 0.5rem 0;
+         }
         
-        .event-price {
-            font-size: 0.9rem;
-            color: var(--hrc-red);
-            font-weight: 600;
-        }
+                 .event-price {
+             font-size: 0.9rem;
+             color: var(--hrc-red);
+             font-weight: 600;
+             margin-top: 0.5rem;
+         }
         
-        .event-image {
-            width: 200px;
-            height: 150px;
-            background: linear-gradient(45deg, var(--hrc-red), #c0392b);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
+                 .event-image {
+             width: 200px;
+             height: 150px;
+             background: linear-gradient(45deg, var(--hrc-red), #c0392b);
+             border-radius: 8px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             position: relative;
+             overflow: hidden;
+             flex-shrink: 0;
+         }
         
         .event-image::before {
             content: '';
@@ -413,12 +453,14 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>');
         }
         
-        .event-image i {
-            font-size: 2rem;
-            color: white;
-            z-index: 2;
-            position: relative;
-        }
+                 .event-image i {
+             font-size: 1.5rem;
+             color: white;
+             z-index: 2;
+             position: relative;
+         }
+         
+
         
         /* Status badges */
         .status-badge {
@@ -499,39 +541,255 @@
             color: #999;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .search-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .event-nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .event-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .event-image {
-                width: 100%;
-                height: 200px;
-            }
-        }
-    </style>
-</head>
+                 /* Responsive */
+         @media (max-width: 768px) {
+             .header-content {
+                 flex-direction: column;
+                 gap: 1rem;
+             }
+             
+             .nav-links {
+                 gap: 1rem;
+             }
+             
+             .search-container {
+                 flex-direction: column;
+                 gap: 1rem;
+             }
+             
+             .event-nav-container {
+                 flex-direction: column;
+                 gap: 1rem;
+             }
+             
+             .event-item {
+                 flex-direction: column;
+                 gap: 1rem;
+                 padding-bottom: 1rem;
+             }
+             
+             .event-image {
+                 width: 100%;
+                 height: 200px;
+             }
+             
+             .event-date {
+                 min-width: auto;
+                 flex-direction: row;
+                 gap: 0.5rem;
+                 align-items: center;
+             }
+                  }
+         
+         /* Footer Styles */
+         .footer {
+             background-color: var(--hrc-dark);
+             color: white;
+             margin-top: 4rem;
+         }
+         
+         .footer-content {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 3rem 2rem 2rem;
+             display: grid;
+             grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+             gap: 3rem;
+         }
+         
+         .footer-section h4 {
+             color: var(--hrc-red);
+             font-size: 1.1rem;
+             font-weight: 600;
+             margin-bottom: 1.5rem;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+         }
+         
+         .footer-logo {
+             display: flex;
+             align-items: center;
+             gap: 1rem;
+             margin-bottom: 1rem;
+         }
+         
+         .footer-logo-image {
+             height: 40px;
+             width: auto;
+         }
+         
+         .footer-logo h3 {
+             font-size: 1.5rem;
+             font-weight: 700;
+             margin: 0;
+             color: white;
+         }
+         
+         .footer-description {
+             color: #ccc;
+             line-height: 1.6;
+             margin-bottom: 1.5rem;
+         }
+         
+         .social-links {
+             display: flex;
+             gap: 1rem;
+         }
+         
+         .social-link {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             width: 40px;
+             height: 40px;
+             background-color: #333;
+             color: white;
+             border-radius: 50%;
+             text-decoration: none;
+             transition: all 0.3s ease;
+         }
+         
+         .social-link:hover {
+             background-color: var(--hrc-red);
+             color: white;
+             transform: translateY(-2px);
+         }
+         
+         .footer-links {
+             list-style: none;
+             padding: 0;
+             margin: 0;
+         }
+         
+         .footer-links li {
+             margin-bottom: 0.75rem;
+         }
+         
+         .footer-links a {
+             color: #ccc;
+             text-decoration: none;
+             transition: color 0.3s ease;
+         }
+         
+         .footer-links a:hover {
+             color: var(--hrc-red);
+         }
+         
+         .contact-info {
+             display: flex;
+             flex-direction: column;
+             gap: 1rem;
+         }
+         
+         .contact-item {
+             display: flex;
+             align-items: center;
+             gap: 0.75rem;
+             color: #ccc;
+         }
+         
+         .contact-item i {
+             color: var(--hrc-red);
+             font-size: 1.1rem;
+             min-width: 20px;
+         }
+         
+         .newsletter-form {
+             margin-top: 1rem;
+         }
+         
+         .input-group {
+             display: flex;
+             gap: 0.5rem;
+         }
+         
+         .newsletter-input {
+             flex: 1;
+             padding: 0.75rem 1rem;
+             border: 1px solid #333;
+             border-radius: 4px;
+             background-color: #333;
+             color: white;
+             font-size: 0.9rem;
+         }
+         
+         .newsletter-input::placeholder {
+             color: #999;
+         }
+         
+         .newsletter-input:focus {
+             outline: none;
+             border-color: var(--hrc-red);
+         }
+         
+         .newsletter-btn {
+             padding: 0.75rem 1rem;
+             background-color: var(--hrc-red);
+             color: white;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+         }
+         
+         .newsletter-btn:hover {
+             background-color: #c0392b;
+         }
+         
+         .footer-bottom {
+             border-top: 1px solid #333;
+             padding: 1.5rem 2rem;
+         }
+         
+         .footer-bottom-content {
+             max-width: 1200px;
+             margin: 0 auto;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+         }
+         
+         .footer-bottom p {
+             color: #999;
+             margin: 0;
+         }
+         
+         .footer-bottom-links {
+             display: flex;
+             gap: 2rem;
+         }
+         
+         .footer-bottom-links a {
+             color: #999;
+             text-decoration: none;
+             font-size: 0.9rem;
+             transition: color 0.3s ease;
+         }
+         
+         .footer-bottom-links a:hover {
+             color: var(--hrc-red);
+         }
+         
+         /* Responsive Footer */
+         @media (max-width: 768px) {
+             .footer-content {
+                 grid-template-columns: 1fr;
+                 gap: 2rem;
+                 padding: 2rem 1rem 1rem;
+             }
+             
+             .footer-bottom-content {
+                 flex-direction: column;
+                 gap: 1rem;
+                 text-align: center;
+             }
+             
+             .footer-bottom-links {
+                 gap: 1rem;
+             }
+         }
+     </style>
+ </head>
 <body>
     <!-- Header -->
     <header class="header">
@@ -640,9 +898,10 @@
             </div>
         </c:if>
         
-        <c:if test="${not empty events}">
-            <c:forEach var="event" items="${events}">
-                <div class="event-item">
+                 <c:if test="${not empty events}">
+             <c:forEach var="event" items="${events}">
+                 <a href="${pageContext.request.contextPath}/event-detail?id=${event.id}" class="event-item-link">
+                     <div class="event-item">
                     <div class="event-date">
                         <div class="event-month">
                             ${event.startAt.month.toString().substring(0,3).toUpperCase()}
@@ -655,42 +914,34 @@
                         </div>
                     </div>
                     
-                    <div class="event-details">
-                        <div class="event-time">
-                            ${event.startAt.month.toString().substring(0,3)} ${event.startAt.dayOfMonth} @ ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute} ${event.startAt.hour < 12 ? 'AM' : 'PM'} - 
-                            ${event.endAt.hour}:${event.endAt.minute < 10 ? '0' : ''}${event.endAt.minute} ${event.endAt.hour < 12 ? 'AM' : 'PM'}
-                        </div>
-                        <h3 class="event-title">
-                            ${event.name}
-                            <span class="status-badge status-${fn:toLowerCase(event.status)}">${event.status}</span>
-                        </h3>
-                                                 <div class="event-venue">
+                                         <div class="event-details">
+                         <div class="event-time">
+                             Tháng ${event.startAt.monthValue} Ngày ${event.startAt.dayOfMonth} @ ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute}
+                         </div>
+                         <h3 class="event-title">
+                             ${event.name}
+                             <span class="status-badge status-${fn:toLowerCase(event.status)}">${event.status}</span>
+                         </h3>
+                         <div class="event-venue">
                              Venue ID: ${event.venueId}
                          </div>
-                        <p class="event-description">${event.description}</p>
-                        <div class="event-price">
-                            <c:set var="eventArtists" value="${eventArtistsMap[event.id]}" />
-                            <c:if test="${not empty eventArtists}">
-                                <strong>Artists:</strong> 
-                                <c:forEach var="artist" items="${eventArtists}" varStatus="status">
-                                    ${artist.artistName}<c:if test="${!status.last}">, </c:if>
-                                </c:forEach>
-                            </c:if>
-                        </div>
-                    </div>
+                         <p class="event-description">${event.description}</p>
+                         <div class="event-artists">
+                             <c:set var="eventArtists" value="${eventArtistsMap[event.id]}" />
+                             <c:if test="${not empty eventArtists}">
+                                 <c:forEach var="artist" items="${eventArtists}" varStatus="status">
+                                     ${artist.artistName}<c:if test="${!status.last}">, </c:if>
+                                 </c:forEach>
+                             </c:if>
+                         </div>
+                     </div>
                     
-                                         <div class="event-image">
+                                                              <div class="event-image">
                          <i class="bi bi-music-note-beamed"></i>
                      </div>
-                     
-                     <div class="event-actions">
-                         <a href="${pageContext.request.contextPath}/event-detail?id=${event.id}" class="btn btn-primary">
-                             <i class="bi bi-eye"></i> Xem Chi Tiết
-                         </a>
-                     </div>
-                 </div>
-            </c:forEach>
-        </c:if>
+                 </a>
+             </c:forEach>
+         </c:if>
         
         <c:if test="${empty events}">
             <div class="empty-state">
@@ -699,9 +950,87 @@
                 <p>Check back soon for upcoming rock concerts!</p>
             </div>
         </c:if>
-    </main>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+         </main>
+ 
+     <!-- Footer -->
+     <footer class="footer">
+         <div class="footer-content">
+             <div class="footer-section">
+                 <div class="footer-logo">
+                     <img src="${pageContext.request.contextPath}/img/HRC-Logo.png" alt="Hanoi Rock City" class="footer-logo-image">
+                     <h3>Hanoi Rock City</h3>
+                 </div>
+                 <p class="footer-description">
+                     Nơi âm nhạc rock sống động nhất Hà Nội. Chúng tôi mang đến những trải nghiệm âm nhạc tuyệt vời nhất cho cộng đồng rock Việt Nam.
+                 </p>
+                 <div class="social-links">
+                     <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                     <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                     <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                     <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                 </div>
+             </div>
+             
+             <div class="footer-section">
+                 <h4>Liên Kết Nhanh</h4>
+                 <ul class="footer-links">
+                     <li><a href="${pageContext.request.contextPath}/events">Sự Kiện</a></li>
+                     <li><a href="#">Về Chúng Tôi</a></li>
+                     <li><a href="#">Liên Hệ</a></li>
+                     <li><a href="#">Tin Tức</a></li>
+                     <li><a href="#">Hỗ Trợ</a></li>
+                 </ul>
+             </div>
+             
+             <div class="footer-section">
+                 <h4>Thông Tin Liên Hệ</h4>
+                 <div class="contact-info">
+                     <div class="contact-item">
+                         <i class="bi bi-geo-alt"></i>
+                         <span>27/52 Tô Ngọc Vân, Tây Hồ, Hà Nội</span>
+                     </div>
+                     <div class="contact-item">
+                         <i class="bi bi-telephone"></i>
+                         <span>+84 24 3719 0567</span>
+                     </div>
+                     <div class="contact-item">
+                         <i class="bi bi-envelope"></i>
+                         <span>info@hanoirockcity.com</span>
+                     </div>
+                     <div class="contact-item">
+                         <i class="bi bi-clock"></i>
+                         <span>Thứ 2 - Chủ Nhật: 18:00 - 02:00</span>
+                     </div>
+                 </div>
+             </div>
+             
+             <div class="footer-section">
+                 <h4>Đăng Ký Nhận Tin</h4>
+                 <p>Nhận thông báo về các sự kiện mới nhất</p>
+                 <form class="newsletter-form">
+                     <div class="input-group">
+                         <input type="email" placeholder="Email của bạn" class="newsletter-input">
+                         <button type="submit" class="newsletter-btn">
+                             <i class="bi bi-send"></i>
+                         </button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+         
+         <div class="footer-bottom">
+             <div class="footer-bottom-content">
+                 <p>&copy; 2025 Hanoi Rock City. Tất cả quyền được bảo lưu.</p>
+                 <div class="footer-bottom-links">
+                     <a href="#">Chính Sách Bảo Mật</a>
+                     <a href="#">Điều Khoản Sử Dụng</a>
+                     <a href="#">Sơ Đồ Trang Web</a>
+                 </div>
+             </div>
+         </div>
+     </footer>
+ 
+     <!-- Bootstrap JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ </body>
+ </html>
