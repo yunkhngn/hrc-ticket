@@ -43,7 +43,7 @@ public class OrderController extends HttpServlet {
             
             // For customers, show only their orders
             List<Order> orders;
-            Long customerId = (Long) session.getAttribute("customerId");
+            Long customerId = (Long) session.getAttribute("userId");
             if (customerId != null) {
                 orders = orderService.getOrdersByCustomer(customerId);
             } else {
@@ -75,7 +75,7 @@ public class OrderController extends HttpServlet {
                     if (order != null) {
                         // Check if user has permission to view this order
                         if ("ADMIN".equals(userRole) || "STAFF".equals(userRole) || 
-                            (order.getCustomerId().equals(session.getAttribute("customerId")))) {
+                            (order.getCustomerId().equals(session.getAttribute("userId")))) {
                             
                             List<OrderItem> orderItems = orderService.getOrderItems(orderId);
                             request.setAttribute("order", order);
@@ -121,7 +121,7 @@ public class OrderController extends HttpServlet {
                     if (order != null) {
                         // Check if user has permission to cancel this order
                         if ("ADMIN".equals(userRole) || "STAFF".equals(userRole) || 
-                            (order.getCustomerId().equals(session.getAttribute("customerId")))) {
+                            (order.getCustomerId().equals(session.getAttribute("userId")))) {
                             
                             // Only allow cancellation of PENDING orders
                             if ("PENDING".equals(order.getStatus()) && "PENDING".equals(order.getPaymentStatus())) {

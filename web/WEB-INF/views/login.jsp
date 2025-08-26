@@ -398,9 +398,9 @@
                         </form>
                         
                         <div class="text-center mt-4">
-                            <p class="text-muted">Don't have an account? 
+                            <p class="text-muted">Không có tài khoản?
                                 <a href="${pageContext.request.contextPath}/register" class="text-danger text-decoration-none">
-                                    <i class="bi bi-person-plus"></i> Register
+                                    <i class="bi bi-person-plus"></i> Đăng kí
                                 </a>
                             </p>
                         </div>

@@ -781,41 +781,72 @@
               <div class="add-to-cart-section" style="margin-top: 3rem;">
                  <div class="detail-card">
                      <h3><i class="bi bi-cart-plus"></i> Đặt Vé</h3>
-                     <c:if test="${not empty eventZones}">
-                         <form action="${pageContext.request.contextPath}/cart" method="post" class="add-to-cart-form">
-                             <input type="hidden" name="action" value="add">
-                             <div class="ticket-selection">
-                                 <div class="form-group">
-                                     <label for="eventZoneId">Chọn khu vực:</label>
-                                     <select name="eventZoneId" id="eventZoneId" class="form-select" required>
-                                         <option value="">Chọn khu vực...</option>
-                                         <c:forEach var="zone" items="${eventZones}">
-                                             <option value="${zone.id}">
-                                                 ${zone.venueZoneName} - ${zone.price} ${zone.currency}
-                                             </option>
-                                         </c:forEach>
-                                     </select>
+                     
+                     <!-- Check if event is available for purchase -->
+                     <c:choose>
+                         <c:when test="${event.status eq 'ONSALE'}">
+                             <c:if test="${not empty eventZones}">
+                                 <form action="${pageContext.request.contextPath}/cart" method="post" class="add-to-cart-form">
+                                     <input type="hidden" name="action" value="add">
+                                     <div class="ticket-selection">
+                                         <div class="form-group">
+                                             <label for="eventZoneId">Chọn khu vực:</label>
+                                             <select name="eventZoneId" id="eventZoneId" class="form-select" required>
+                                                 <option value="">Chọn khu vực...</option>
+                                                 <c:forEach var="zone" items="${eventZones}">
+                                                     <option value="${zone.id}">
+                                                         ${zone.venueZoneName} - ${zone.price} ${zone.currency}
+                                                     </option>
+                                                 </c:forEach>
+                                             </select>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="quantity">Số lượng:</label>
+                                             <select name="quantity" id="quantity" class="form-select" required>
+                                                 <option value="">Chọn số lượng...</option>
+                                                 <c:forEach var="i" begin="1" end="10">
+                                                     <option value="${i}">${i}</option>
+                                                 </c:forEach>
+                                             </select>
+                                         </div>
+                                         <button type="submit" class="btn btn-primary">
+                                             <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ Hàng
+                                         </button>
+                                     </div>
+                                 </form>
+                             </c:if>
+                             <c:if test="${empty eventZones}">
+                                 <div class="alert alert-warning">
+                                     <i class="bi bi-exclamation-triangle"></i> Chưa có thông tin vé cho sự kiện này
                                  </div>
-                                 <div class="form-group">
-                                     <label for="quantity">Số lượng:</label>
-                                     <select name="quantity" id="quantity" class="form-select" required>
-                                         <option value="">Chọn số lượng...</option>
-                                         <c:forEach var="i" begin="1" end="10">
-                                             <option value="${i}">${i}</option>
-                                         </c:forEach>
-                                     </select>
-                                 </div>
-                                 <button type="submit" class="btn btn-primary">
-                                     <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ Hàng
-                                 </button>
+                             </c:if>
+                         </c:when>
+                         <c:when test="${event.status eq 'SOLD_OUT'}">
+                             <div class="alert alert-danger">
+                                 <i class="bi bi-x-circle"></i> <strong>Hết Vé!</strong> Sự kiện này đã bán hết vé.
                              </div>
-                         </form>
-                     </c:if>
-                     <c:if test="${empty eventZones}">
-                         <div class="alert alert-warning">
-                             <i class="bi bi-exclamation-triangle"></i> Chưa có thông tin vé cho sự kiện này
-                         </div>
-                     </c:if>
+                         </c:when>
+                         <c:when test="${event.status eq 'CANCELLED'}">
+                             <div class="alert alert-danger">
+                                 <i class="bi bi-x-circle"></i> <strong>Đã Hủy!</strong> Sự kiện này đã bị hủy.
+                             </div>
+                         </c:when>
+                         <c:when test="${event.status eq 'CLOSED'}">
+                             <div class="alert alert-warning">
+                                 <i class="bi bi-lock"></i> <strong>Đã Đóng!</strong> Sự kiện này đã đóng bán vé.
+                             </div>
+                         </c:when>
+                         <c:when test="${event.status eq 'DRAFT'}">
+                             <div class="alert alert-info">
+                                 <i class="bi bi-pencil"></i> <strong>Đang Chuẩn Bị!</strong> Sự kiện này đang được chuẩn bị.
+                             </div>
+                         </c:when>
+                         <c:otherwise>
+                             <div class="alert alert-secondary">
+                                 <i class="bi bi-question-circle"></i> <strong>Không Khả Dụng!</strong> Sự kiện này hiện không khả dụng để đặt vé.
+                             </div>
+                         </c:otherwise>
+                     </c:choose>
                  </div>
              </div>
          </c:if>

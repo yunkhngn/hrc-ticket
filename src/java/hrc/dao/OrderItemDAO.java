@@ -43,7 +43,7 @@ public class OrderItemDAO {
     }
     
     public boolean create(OrderItem orderItem) {
-        String sql = "INSERT INTO OrderItems (order_id, event_zone_id, qty, unit_price, fee_amount, final_price) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO OrderItems (order_id, event_zone_id, qty, unit_price, fee_amount) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -53,7 +53,6 @@ public class OrderItemDAO {
             ps.setInt(3, orderItem.getQty());
             ps.setBigDecimal(4, orderItem.getUnitPrice());
             ps.setBigDecimal(5, orderItem.getFeeAmount());
-            ps.setBigDecimal(6, orderItem.getFinalPrice());
             
             int affectedRows = ps.executeUpdate();
             

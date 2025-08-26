@@ -104,7 +104,7 @@ public class CheckoutController extends HttpServlet {
         }
         
         // Get customer ID from session
-        Long customerId = (Long) session.getAttribute("customerId");
+        Long customerId = (Long) session.getAttribute("userId");
         if (customerId == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
