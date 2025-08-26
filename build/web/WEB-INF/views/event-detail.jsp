@@ -10,6 +10,7 @@
     <title>${event.name} - Hanoi Rock City</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
     <style>
         :root {
             --hrc-red: #e74c3c;
@@ -142,183 +143,248 @@
             font-size: 1rem;
         }
         
-        /* Event Detail Styles */
-        .event-detail-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .event-header {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            align-items: flex-start;
-        }
-        
-        .event-image-large {
-            width: 400px;
-            height: 300px;
-            background: linear-gradient(45deg, var(--hrc-red), #c0392b);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .event-image-large::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>');
-        }
-        
-        .event-image-large i {
-            font-size: 4rem;
-            color: white;
-            z-index: 2;
-            position: relative;
-        }
-        
-        .event-info {
-            flex: 1;
-        }
-        
-        .event-title-large {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--hrc-dark);
-            margin-bottom: 1rem;
-        }
-        
-        .event-date-large {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .event-venue-info {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 1rem;
-        }
-        
-        .status-badge-large {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        
-        .status-onsale {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .status-draft {
-            background: #f39c12;
-            color: white;
-        }
-        
-        .status-soldout {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .status-closed {
-            background: #95a5a6;
-            color: white;
-        }
-        
-        .status-cancelled {
-            background: #34495e;
-            color: white;
-        }
-        
-        .event-description-large {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        
-                 .event-actions-large {
+                 /* Event Detail Styles */
+         .event-detail-container {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 2rem;
+         }
+         
+         .event-header {
              display: flex;
-             gap: 1rem;
-             margin-bottom: 2rem;
-             flex-wrap: wrap;
+             gap: 3rem;
+             margin-bottom: 4rem;
+             align-items: flex-start;
+             background: white;
+             border-radius: 16px;
+             padding: 2rem;
+             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+         }
+         
+         .event-image-large {
+             width: 450px;
+             height: 320px;
+             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+             border-radius: 16px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             position: relative;
+             overflow: hidden;
+             flex-shrink: 0;
+             box-shadow: 0 8px 24px rgba(231, 76, 60, 0.3);
+         }
+         
+         .event-image-large::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>');
+         }
+         
+         .event-image-large i {
+             font-size: 5rem;
+             color: white;
+             z-index: 2;
+             position: relative;
+             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+         }
+         
+         .event-info {
+             flex: 1;
+             display: flex;
+             flex-direction: column;
+             gap: 1.5rem;
+         }
+         
+         .event-title-large {
+             font-size: 3rem;
+             font-weight: 800;
+             color: var(--hrc-dark);
+             margin: 0;
+             line-height: 1.2;
+             letter-spacing: -0.5px;
+         }
+         
+         .event-date-large {
+             font-size: 1.3rem;
+             color: #555;
+             margin: 0;
+             display: flex;
+             align-items: center;
+             gap: 0.75rem;
+             font-weight: 500;
+         }
+         
+         .event-date-large i {
+             color: var(--hrc-red);
+             font-size: 1.2rem;
+         }
+         
+         .event-venue-info {
+             font-size: 1.2rem;
+             color: #555;
+             margin: 0;
+             display: flex;
+             align-items: center;
+             gap: 0.75rem;
+             font-weight: 500;
+         }
+         
+         .event-venue-info i {
+             color: var(--hrc-red);
+             font-size: 1.2rem;
+         }
+         
+         .status-badge-large {
+             display: inline-block;
+             padding: 0.75rem 1.5rem;
+             border-radius: 25px;
+             font-size: 1rem;
+             font-weight: 700;
+             text-transform: uppercase;
+             margin: 0;
+             letter-spacing: 1px;
+             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+         }
+         
+         .status-onsale {
+             background: linear-gradient(135deg, #00d4aa, #00b894);
+             color: white;
+             box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+         }
+         
+         .status-draft {
+             background: linear-gradient(135deg, #fdcb6e, #e17055);
+             color: white;
+             box-shadow: 0 4px 12px rgba(253, 203, 110, 0.3);
+         }
+         
+         .status-soldout {
+             background: linear-gradient(135deg, #e74c3c, #c0392b);
+             color: white;
+             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+         }
+         
+         .status-closed {
+             background: linear-gradient(135deg, #636e72, #2d3436);
+             color: white;
+             box-shadow: 0 4px 12px rgba(99, 110, 114, 0.3);
+         }
+         
+         .status-cancelled {
+             background: linear-gradient(135deg, #6c5ce7, #5f3dc4);
+             color: white;
+             box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+         }
+         
+         .event-description-large {
+             font-size: 1.2rem;
+             color: #555;
+             line-height: 1.7;
+             margin: 0;
+             font-weight: 400;
+         }
+         
+         .event-actions-large {
+             display: flex;
+             flex-direction: column;
+             gap: 1.5rem;
+             margin: 0;
+             padding-top: 1rem;
          }
          
          .add-to-cart-form {
              display: flex;
              flex-direction: column;
-             gap: 1rem;
-             min-width: 300px;
+             gap: 1.5rem;
+             background: #f8f9fa;
+             padding: 2rem;
+             border-radius: 12px;
+             border: 1px solid #e9ecef;
          }
          
          .ticket-selection {
              display: flex;
              flex-direction: column;
-             gap: 0.5rem;
+             gap: 1rem;
+         }
+         
+         .ticket-selection label {
+             font-weight: 600;
+             color: var(--hrc-dark);
+             font-size: 1rem;
+             margin-bottom: 0.5rem;
          }
          
          .quantity-selector {
              display: flex;
              align-items: center;
-             gap: 0.5rem;
+             gap: 1rem;
          }
          
          .quantity-selector label {
              font-weight: 600;
              color: var(--hrc-dark);
-             min-width: 80px;
+             min-width: 100px;
+             margin: 0;
          }
          
          .form-select {
-             padding: 0.5rem;
-             border: 1px solid #ddd;
-             border-radius: 4px;
-             font-size: 0.9rem;
+             padding: 0.75rem 1rem;
+             border: 2px solid #e9ecef;
+             border-radius: 8px;
+             font-size: 1rem;
+             background: white;
+             transition: all 0.3s ease;
+         }
+         
+         .form-select:focus {
+             border-color: var(--hrc-red);
+             box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+             outline: none;
          }
         
-        .btn-primary {
-            background-color: var(--hrc-red);
-            border-color: var(--hrc-red);
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: #c0392b;
-            border-color: #c0392b;
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline-secondary {
-            border-color: #666;
-            color: #666;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline-secondary:hover {
-            background-color: #666;
-            border-color: #666;
-            color: white;
-        }
+                 .btn-primary {
+             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+             border: none;
+             padding: 1rem 2rem;
+             font-weight: 700;
+             border-radius: 12px;
+             transition: all 0.3s ease;
+             font-size: 1.1rem;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+             box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
+         }
+         
+         .btn-primary:hover {
+             background: linear-gradient(135deg, #c0392b, #a93226);
+             transform: translateY(-2px);
+             box-shadow: 0 8px 24px rgba(231, 76, 60, 0.4);
+         }
+         
+         .btn-outline-secondary {
+             border: 2px solid #6c757d;
+             color: #6c757d;
+             padding: 1rem 2rem;
+             font-weight: 600;
+             border-radius: 12px;
+             transition: all 0.3s ease;
+             font-size: 1rem;
+             background: transparent;
+         }
+         
+         .btn-outline-secondary:hover {
+             background: linear-gradient(135deg, #6c757d, #5a6268);
+             border-color: #6c757d;
+             color: white;
+             transform: translateY(-2px);
+             box-shadow: 0 4px 16px rgba(108, 117, 125, 0.3);
+         }
         
         .event-details-section {
             display: grid;
@@ -586,6 +652,9 @@
             </div>
         </div>
     </main>
+
+    <!-- Include Footer -->
+    <jsp:include page="fragments/footer.jsp" />
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

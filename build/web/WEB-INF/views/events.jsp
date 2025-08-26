@@ -308,94 +308,151 @@
         }
         
         .event-list-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--hrc-dark);
             margin-bottom: 2rem;
-            color: #333;
+            text-align: center;
         }
         
-                 .event-item {
-             display: flex;
-             align-items: flex-start;
-             gap: 2rem;
-             margin-bottom: 2rem;
-             padding: 0;
-             border-radius: 0;
-             transition: all 0.3s ease;
-             cursor: pointer;
-             border: none;
-             border-bottom: 1px solid #eee;
-             position: relative;
-             background: transparent;
-             box-shadow: none;
-             overflow: visible;
-         }
-         
-         .event-item-link {
-             text-decoration: none;
-             color: inherit;
-             display: block;
-         }
-         
-         .event-item:hover {
-             transform: translateY(-4px);
-             box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
-             border-color: var(--hrc-red);
-         }
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
         
-                 .event-date {
-             min-width: 120px;
-             text-align: left;
-             padding: 0;
-             background-color: transparent;
-             border-radius: 0;
-             border: none;
-             flex-shrink: 0;
-             display: flex;
-             flex-direction: column;
-             justify-content: flex-start;
-         }
+        .event-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 1.25rem 0;
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s ease;
+        }
         
-        .event-month {
+        .event-row:hover {
+            background: #fafafa;
+        }
+        
+        .event-date {
+            min-width: 120px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .event-date .month {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--hrc-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .event-date .day {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--hrc-dark);
+            line-height: 1;
+        }
+        
+        .event-date .year {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .event-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .event-time {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .event-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--hrc-dark);
+            line-height: 1.3;
+            margin: 0;
+        }
+        
+        .event-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--hrc-red);
+            color: white;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #666;
+            border-radius: 20px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .event-day {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
+        .event-venue {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 500;
         }
         
-        .event-year {
-            font-size: 0.8rem;
+        .event-description {
             color: #666;
+            line-height: 1.5;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
-                 .event-details {
-             flex: 1;
-             display: flex;
-             flex-direction: column;
-             gap: 0.75rem;
-             padding: 0;
-             justify-content: flex-start;
-         }
+        .event-artists {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
         
-                 .event-time {
-             font-size: 0.9rem;
-             color: #666;
-             font-weight: 500;
-         }
+        .event-image {
+            width: 240px;
+            height: 140px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
         
-                 .event-title {
-             font-size: 1.4rem;
-             font-weight: 700;
-             color: #333;
-             margin: 0;
-             line-height: 1.3;
-         }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .event-row {
+                flex-direction: column;
+            }
+            
+            .event-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .event-date {
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+        }
         
                  .event-venue {
              font-size: 0.95rem;
@@ -474,28 +531,33 @@
         }
         
         .status-onsale {
-            background: #27ae60;
+            background: linear-gradient(135deg, #00d4aa, #00b894);
             color: white;
+            box-shadow: 0 2px 8px rgba(0, 212, 170, 0.3);
         }
         
         .status-draft {
-            background: #f39c12;
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
             color: white;
+            box-shadow: 0 2px 8px rgba(253, 203, 110, 0.3);
         }
         
         .status-soldout {
-            background: #e74c3c;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
         }
         
         .status-closed {
-            background: #95a5a6;
+            background: linear-gradient(135deg, #636e72, #2d3436);
             color: white;
+            box-shadow: 0 2px 8px rgba(99, 110, 114, 0.3);
         }
         
         .status-cancelled {
-            background: #34495e;
+            background: linear-gradient(135deg, #6c5ce7, #5f3dc4);
             color: white;
+            box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
         }
         
         /* Alert styles */
@@ -835,10 +897,7 @@
                     </c:otherwise>
                 </c:choose>
                 
-                <div class="language-selector">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRDAwMDAwIi8+CjxwYXRoIGQ9Ik0xMiA0TDE0IDhIMTBMOCA0SDZMMTAgOEg2TDEyIDEyTDE4IDhIMTRMMTggNEgxNkwxMiA4SDEwTDEyIDRaIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Vietnamese" class="flag">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDAwMDgwIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIzIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI2IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI5IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIxMiIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iOCIgZmlsbD0iIzAwMDA4MCIvPgo8ZyBmaWxsPSIjRkZGRkZGIj4KPGNpcmNsZSBjeD0iNSIgY3k9IjQiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI3IiBjeT0iMyIgcj0iMC41Ii8+CjxjaXJjbGUgY3g9IjkiIGN5PSI0IiByPSIwLjUiLz4KPGNpcmNsZSBjeD0iOCIgY3k9IjYiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iMC41Ii8+CjwvZz4KPC9zdmc+Cg==" alt="English" class="flag">
-                </div>
+
             </div>
         </div>
     </header>
@@ -898,50 +957,53 @@
             </div>
         </c:if>
         
-                 <c:if test="${not empty events}">
-             <c:forEach var="event" items="${events}">
-                 <a href="${pageContext.request.contextPath}/event-detail?id=${event.id}" class="event-item-link">
-                     <div class="event-item">
-                    <div class="event-date">
-                        <div class="event-month">
-                            ${event.startAt.month.toString().substring(0,3).toUpperCase()}
-                        </div>
-                        <div class="event-day">
-                            ${event.startAt.dayOfMonth}
-                        </div>
-                        <div class="event-year">
-                            ${event.startAt.year}
-                        </div>
-                    </div>
-                    
-                                         <div class="event-details">
-                         <div class="event-time">
-                             Tháng ${event.startAt.monthValue} Ngày ${event.startAt.dayOfMonth} @ ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute}
-                         </div>
-                         <h3 class="event-title">
-                             ${event.name}
-                             <span class="status-badge status-${fn:toLowerCase(event.status)}">${event.status}</span>
-                         </h3>
-                         <div class="event-venue">
-                             Venue ID: ${event.venueId}
-                         </div>
-                         <p class="event-description">${event.description}</p>
-                         <div class="event-artists">
-                             <c:set var="eventArtists" value="${eventArtistsMap[event.id]}" />
-                             <c:if test="${not empty eventArtists}">
-                                 <c:forEach var="artist" items="${eventArtists}" varStatus="status">
-                                     ${artist.artistName}<c:if test="${!status.last}">, </c:if>
-                                 </c:forEach>
-                             </c:if>
-                         </div>
-                     </div>
-                    
-                                                              <div class="event-image">
-                         <i class="bi bi-music-note-beamed"></i>
-                     </div>
-                 </a>
-             </c:forEach>
-         </c:if>
+                         <c:if test="${not empty events}">
+            <ul class="event-list">
+                <c:forEach var="event" items="${events}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/event-detail?id=${event.id}" class="event-row">
+                            <div class="event-date">
+                                <div class="month">
+                                    ${event.startAt.month.toString().substring(0,3).toUpperCase()}
+                                </div>
+                                <div class="day">
+                                    ${event.startAt.dayOfMonth}
+                                </div>
+                                <div class="year">
+                                    ${event.startAt.year}
+                                </div>
+                            </div>
+                            
+                            <div class="event-details">
+                                <div class="event-time">
+                                    ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute}
+                                </div>
+                                <h3 class="event-title">
+                                    ${event.name}
+                                    <span class="event-status">${event.status}</span>
+                                </h3>
+                                <div class="event-venue">
+                                    Venue ID: ${event.venueId}
+                                </div>
+                                <p class="event-description">${event.description}</p>
+                                <div class="event-artists">
+                                    <c:set var="eventArtists" value="${eventArtistsMap[event.id]}" />
+                                    <c:if test="${not empty eventArtists}">
+                                        <c:forEach var="artist" items="${eventArtists}" varStatus="status">
+                                            ${artist.artistName}<c:if test="${!status.last}">, </c:if>
+                                        </c:forEach>
+                                    </c:if>
+                                </div>
+                            </div>
+                            
+                            <div class="event-image">
+                                <i class="bi bi-music-note-beamed"></i>
+                            </div>
+                        </a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </c:if>
         
         <c:if test="${empty events}">
             <div class="empty-state">
