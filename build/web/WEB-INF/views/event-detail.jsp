@@ -144,11 +144,44 @@
         }
         
                  /* Event Detail Styles */
-         .event-detail-container {
-             max-width: 1200px;
-             margin: 0 auto;
-             padding: 2rem;
-         }
+                   .event-detail-container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 2rem;
+          }
+          
+          /* Back Navigation */
+          .back-navigation {
+              margin-bottom: 1.5rem;
+          }
+          
+          .back-link {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              color: #666;
+              text-decoration: none;
+              font-size: 0.9rem;
+              font-weight: 500;
+              padding: 0.5rem 1rem;
+              border: 1px solid #e9ecef;
+              border-radius: 8px;
+              background: white;
+              transition: all 0.3s ease;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+          
+          .back-link:hover {
+              color: var(--hrc-red);
+              border-color: var(--hrc-red);
+              background: #fff5f5;
+              transform: translateY(-1px);
+              box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+          }
+          
+          .back-link i {
+              font-size: 1rem;
+          }
          
          .event-header {
              display: flex;
@@ -193,12 +226,13 @@
              filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
          }
          
-         .event-info {
-             flex: 1;
-             display: flex;
-             flex-direction: column;
-             gap: 1.5rem;
-         }
+                                       .event-info {
+               flex: 1;
+               display: flex;
+               flex-direction: column;
+               gap: 1.5rem;
+               min-height: 320px; /* Changed from height to min-height */
+           }
          
          .event-title-large {
              font-size: 3rem;
@@ -289,49 +323,40 @@
              font-weight: 400;
          }
          
-         .event-actions-large {
-             display: flex;
-             flex-direction: column;
-             gap: 1.5rem;
-             margin: 0;
-             padding-top: 1rem;
-         }
+                                                                               .event-actions-large {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin: 0;
+                padding-top: 1rem;
+            }
          
-         .add-to-cart-form {
-             display: flex;
-             flex-direction: column;
-             gap: 1.5rem;
-             background: #f8f9fa;
-             padding: 2rem;
-             border-radius: 12px;
-             border: 1px solid #e9ecef;
-         }
+                                                                               .add-to-cart-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
          
-         .ticket-selection {
-             display: flex;
-             flex-direction: column;
-             gap: 1rem;
-         }
+                                       .ticket-selection {
+               display: flex;
+               flex-direction: column;
+               gap: 1.5rem;
+           }
          
-         .ticket-selection label {
-             font-weight: 600;
-             color: var(--hrc-dark);
-             font-size: 1rem;
-             margin-bottom: 0.5rem;
-         }
+                   .form-group {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+          }
+          
+          .form-group label {
+              font-weight: 600;
+              color: var(--hrc-dark);
+              font-size: 1rem;
+              margin: 0;
+          }
          
-         .quantity-selector {
-             display: flex;
-             align-items: center;
-             gap: 1rem;
-         }
          
-         .quantity-selector label {
-             font-weight: 600;
-             color: var(--hrc-dark);
-             min-width: 100px;
-             margin: 0;
-         }
          
          .form-select {
              padding: 0.75rem 1rem;
@@ -549,108 +574,121 @@
             </div>
         </c:if>
         
-        <div class="event-header">
-            <div class="event-image-large">
-                <i class="bi bi-music-note-beamed"></i>
-            </div>
-            
-            <div class="event-info">
-                <h1 class="event-title-large">${event.name}</h1>
-                
-                <div class="event-date-large">
-                    <i class="bi bi-calendar-event"></i>
-                    ${event.startAt.month.toString().substring(0,3)} ${event.startAt.dayOfMonth}, ${event.startAt.year} @ 
-                    ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute} ${event.startAt.hour < 12 ? 'AM' : 'PM'} - 
-                    ${event.endAt.hour}:${event.endAt.minute < 10 ? '0' : ''}${event.endAt.minute} ${event.endAt.hour < 12 ? 'AM' : 'PM'}
-                </div>
-                
-                <c:if test="${not empty venue}">
-                    <div class="event-venue-info">
-                        <i class="bi bi-geo-alt"></i>
-                        ${venue.name} - ${venue.address}
-                    </div>
-                </c:if>
-                
-                <span class="status-badge-large status-${fn:toLowerCase(event.status)}">${event.status}</span>
-                
-                <p class="event-description-large">${event.description}</p>
-                
-                <div class="event-actions-large">
-                    <c:if test="${sessionScope.userRole eq 'CUSTOMER' && not empty eventZones}">
-                        <form action="${pageContext.request.contextPath}/cart" method="post" class="add-to-cart-form">
-                            <input type="hidden" name="action" value="add">
-                            <div class="ticket-selection">
-                                <select name="eventZoneId" class="form-select mb-2" required>
-                                    <option value="">Chọn khu vực...</option>
-                                    <c:forEach var="zone" items="${eventZones}">
-                                        <option value="${zone.id}">
-                                            ${zone.venueZoneName} - ${zone.price} ${zone.currency}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                                <div class="quantity-selector">
-                                    <label for="quantity">Số lượng:</label>
-                                    <select name="quantity" class="form-select" required>
-                                        <option value="">Chọn số lượng...</option>
-                                        <c:forEach var="i" begin="1" end="10">
-                                            <option value="${i}">${i}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ Hàng
-                                </button>
-                            </div>
-                        </form>
-                    </c:if>
-                    <c:if test="${sessionScope.userRole eq 'CUSTOMER' && empty eventZones}">
-                        <div class="alert alert-warning">
-                            <i class="bi bi-exclamation-triangle"></i> Chưa có thông tin vé cho sự kiện này
-                        </div>
-                    </c:if>
-                    <a href="${pageContext.request.contextPath}/events" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-left"></i> Quay Lại Danh Sách
-                    </a>
-                </div>
-            </div>
-        </div>
+                 <!-- Back Navigation -->
+         <div class="back-navigation">
+             <a href="${pageContext.request.contextPath}/events" class="back-link">
+                 <i class="bi bi-arrow-left"></i> Quay Lại Danh Sách
+             </a>
+         </div>
+         
+         <div class="event-header">
+             <div class="event-image-large">
+                 <i class="bi bi-music-note-beamed"></i>
+             </div>
+             
+             <div class="event-info">
+                 <h1 class="event-title-large">${event.name}</h1>
+                 
+                 <div class="event-date-large">
+                     <i class="bi bi-calendar-event"></i>
+                     ${event.startAt.month.toString().substring(0,3)} ${event.startAt.dayOfMonth}, ${event.startAt.year} @ 
+                     ${event.startAt.hour}:${event.startAt.minute < 10 ? '0' : ''}${event.startAt.minute} ${event.startAt.hour < 12 ? 'AM' : 'PM'} - 
+                     ${event.endAt.hour}:${event.endAt.minute < 10 ? '0' : ''}${event.endAt.minute} ${event.endAt.hour < 12 ? 'AM' : 'PM'}
+                 </div>
+                 
+                 <c:if test="${not empty venue}">
+                     <div class="event-venue-info">
+                         <i class="bi bi-geo-alt"></i>
+                         ${venue.name} - ${venue.address}
+                     </div>
+                 </c:if>
+                 
+                 <span class="status-badge-large status-${fn:toLowerCase(event.status)}">${event.status}</span>
+                 
+                 <p class="event-description-large">${event.description}</p>
+             </div>
+         </div>
         
-        <div class="event-details-section">
-            <div class="detail-card">
-                <h3><i class="bi bi-music-note-beamed"></i> Nghệ Sĩ Tham Gia</h3>
-                <c:if test="${not empty eventArtists}">
-                    <ul class="artist-list">
-                        <c:forEach var="eventArtist" items="${eventArtists}">
-                            <li class="artist-item">
-                                <div class="artist-name">${eventArtist.artistName}</div>
-                                                        <c:if test="${not empty eventArtist.artistCountry}">
-                            <div class="artist-description">Country: ${eventArtist.artistCountry}</div>
-                        </c:if>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </c:if>
-                <c:if test="${empty eventArtists}">
-                    <p class="text-muted">Chưa có thông tin nghệ sĩ</p>
-                </c:if>
-            </div>
-            
-            <div class="detail-card">
-                <h3><i class="bi bi-geo-alt"></i> Thông Tin Địa Điểm</h3>
-                <c:if test="${not empty venue}">
-                    <div class="venue-info">
-                        <div class="venue-name">${venue.name}</div>
-                        <div class="venue-address">${venue.address}</div>
-                        <c:if test="${not empty venue.capacity}">
-                            <div class="venue-capacity">Sức chứa: ${venue.capacity} người</div>
-                        </c:if>
-                    </div>
-                </c:if>
-                <c:if test="${empty venue}">
-                    <p class="text-muted">Chưa có thông tin địa điểm</p>
-                </c:if>
-            </div>
-        </div>
+                 <div class="event-details-section">
+             <div class="detail-card">
+                 <h3><i class="bi bi-music-note-beamed"></i> Nghệ Sĩ Tham Gia</h3>
+                 <c:if test="${not empty eventArtists}">
+                     <ul class="artist-list">
+                         <c:forEach var="eventArtist" items="${eventArtists}">
+                             <li class="artist-item">
+                                 <div class="artist-name">${eventArtist.artistName}</div>
+                                                         <c:if test="${not empty eventArtist.artistCountry}">
+                             <div class="artist-description">Country: ${eventArtist.artistCountry}</div>
+                         </c:if>
+                             </li>
+                         </c:forEach>
+                     </ul>
+                 </c:if>
+                 <c:if test="${empty eventArtists}">
+                     <p class="text-muted">Chưa có thông tin nghệ sĩ</p>
+                 </c:if>
+             </div>
+             
+             <div class="detail-card">
+                 <h3><i class="bi bi-geo-alt"></i> Thông Tin Địa Điểm</h3>
+                 <c:if test="${not empty venue}">
+                     <div class="venue-info">
+                         <div class="venue-name">${venue.name}</div>
+                         <div class="venue-address">${venue.address}</div>
+                         <c:if test="${not empty venue.capacity}">
+                             <div class="venue-capacity">Sức chứa: ${venue.capacity} người</div>
+                         </c:if>
+                     </div>
+                 </c:if>
+                 <c:if test="${empty venue}">
+                     <p class="text-muted">Chưa có thông tin địa điểm</p>
+                 </c:if>
+             </div>
+         </div>
+         
+         <!-- Add to Cart Section -->
+         <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
+             <div class="add-to-cart-section">
+                 <div class="detail-card">
+                     <h3><i class="bi bi-cart-plus"></i> Đặt Vé</h3>
+                     <c:if test="${not empty eventZones}">
+                         <form action="${pageContext.request.contextPath}/cart" method="post" class="add-to-cart-form">
+                             <input type="hidden" name="action" value="add">
+                             <div class="ticket-selection">
+                                 <div class="form-group">
+                                     <label for="eventZoneId">Chọn khu vực:</label>
+                                     <select name="eventZoneId" id="eventZoneId" class="form-select" required>
+                                         <option value="">Chọn khu vực...</option>
+                                         <c:forEach var="zone" items="${eventZones}">
+                                             <option value="${zone.id}">
+                                                 ${zone.venueZoneName} - ${zone.price} ${zone.currency}
+                                             </option>
+                                         </c:forEach>
+                                     </select>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="quantity">Số lượng:</label>
+                                     <select name="quantity" id="quantity" class="form-select" required>
+                                         <option value="">Chọn số lượng...</option>
+                                         <c:forEach var="i" begin="1" end="10">
+                                             <option value="${i}">${i}</option>
+                                         </c:forEach>
+                                     </select>
+                                 </div>
+                                 <button type="submit" class="btn btn-primary">
+                                     <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ Hàng
+                                 </button>
+                             </div>
+                         </form>
+                     </c:if>
+                     <c:if test="${empty eventZones}">
+                         <div class="alert alert-warning">
+                             <i class="bi bi-exclamation-triangle"></i> Chưa có thông tin vé cho sự kiện này
+                         </div>
+                     </c:if>
+                 </div>
+             </div>
+         </c:if>
     </main>
 
     <!-- Include Footer -->
