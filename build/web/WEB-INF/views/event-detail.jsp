@@ -5,9 +5,47 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${event.name} - Hanoi Rock City</title>
+         <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>${event.name} - Hanoi Rock City</title>
+     
+     <!-- Favicon -->
+     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
+     <link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/favicon-16x16.png">
+     <link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/favicon-96x96.png">
+     
+     <!-- Apple Touch Icons -->
+     <link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/apple-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/apple-icon-60x60.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/apple-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/apple-icon-76x76.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/apple-icon-114x114.png">
+     <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/apple-icon-120x120.png">
+     <link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/apple-icon-144x144.png">
+     <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/apple-icon-152x152.png">
+     <link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/apple-icon-180x180.png">
+     <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/apple-icon.png">
+     
+     <!-- Android Icons -->
+     <link rel="icon" type="image/png" sizes="192x192" href="${pageContext.request.contextPath}/android-icon-192x192.png">
+     <link rel="icon" type="image/png" sizes="144x144" href="${pageContext.request.contextPath}/android-icon-144x144.png">
+     <link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/android-icon-96x96.png">
+     <link rel="icon" type="image/png" sizes="72x72" href="${pageContext.request.contextPath}/android-icon-72x72.png">
+     <link rel="icon" type="image/png" sizes="48x48" href="${pageContext.request.contextPath}/android-icon-48x48.png">
+     <link rel="icon" type="image/png" sizes="36x36" href="${pageContext.request.contextPath}/android-icon-36x36.png">
+     
+     <!-- Microsoft Tiles -->
+     <meta name="msapplication-TileColor" content="#e74c3c">
+     <meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/ms-icon-144x144.png">
+     <meta name="msapplication-config" content="${pageContext.request.contextPath}/browserconfig.xml">
+     
+     <!-- Web App Manifest -->
+     <link rel="manifest" href="${pageContext.request.contextPath}/manifest.json">
+     
+     <!-- Theme Colors -->
+     <meta name="theme-color" content="#e74c3c">
+     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
@@ -65,24 +103,11 @@
             max-width: 120px;
         }
         
-        .logo-text {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .language-selector {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .flag {
-            width: 24px;
-            height: 16px;
-            cursor: pointer;
-            border: 1px solid #333;
-        }
+                 .logo-text {
+             font-size: 0.9rem;
+             text-transform: uppercase;
+             letter-spacing: 1px;
+         }
         
         /* Header Actions Styles */
         .header-actions {
@@ -481,10 +506,67 @@
             margin-bottom: 0.5rem;
         }
         
-        .venue-capacity {
-            color: #666;
-            font-size: 0.9rem;
-        }
+                 .venue-capacity {
+             color: #666;
+             font-size: 0.9rem;
+         }
+         
+         /* Zone Information */
+         .zone-info {
+             margin-top: 2rem;
+             padding-top: 1.5rem;
+             border-top: 1px solid #eee;
+         }
+         
+         .zone-info h4 {
+             color: var(--hrc-dark);
+             font-weight: 600;
+             margin-bottom: 1rem;
+             display: flex;
+             align-items: center;
+             gap: 0.5rem;
+             font-size: 1.1rem;
+         }
+         
+         .zone-info h4 i {
+             color: var(--hrc-red);
+         }
+         
+         .zone-list {
+             display: flex;
+             flex-direction: column;
+             gap: 0.75rem;
+         }
+         
+         .zone-item {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 0.75rem 1rem;
+             background: #f8f9fa;
+             border: 1px solid #e9ecef;
+             border-radius: 8px;
+             transition: all 0.3s ease;
+         }
+         
+         .zone-item:hover {
+             background: #fff5f5;
+             border-color: var(--hrc-red);
+             transform: translateY(-1px);
+             box-shadow: 0 2px 8px rgba(231, 76, 60, 0.1);
+         }
+         
+         .zone-name {
+             font-weight: 600;
+             color: var(--hrc-dark);
+             font-size: 0.95rem;
+         }
+         
+         .zone-price {
+             font-weight: 700;
+             color: var(--hrc-red);
+             font-size: 1rem;
+         }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -557,10 +639,7 @@
                     </c:otherwise>
                 </c:choose>
                 
-                <div class="language-selector">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRDAwMDAwIi8+CjxwYXRoIGQ9Ik0xMiA0TDE0IDhIMTBMOCA0SDZMMTAgOEg2TDEyIDEyTDE4IDhIMTRMMTggNEgxNkwxMiA4SDEwTDEyIDRaIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Vietnamese" class="flag">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDAwMDgwIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIzIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI2IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSI5IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIxIiB5PSIxMiIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iOCIgZmlsbD0iIzAwMDA4MCIvPgo8ZyBmaWxsPSIjRkZGRkZGIj4KPGNpcmNsZSBjeD0iNSIgY3k9IjQiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI3IiBjeT0iMyIgcj0iMC41Ii8+CjxjaXJjbGUgY3g9IjkiIGN5PSI0IiByPSIwLjUiLz4KPGNpcmNsZSBjeD0iOCIgY3k9IjYiIHI9IjAuNSIvPgo8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iMC41Ii8+CjwvZz4KPC9zdmc+Cg==" alt="English" class="flag">
-                </div>
+                
             </div>
         </div>
     </header>
@@ -629,26 +708,41 @@
                  </c:if>
              </div>
              
-             <div class="detail-card">
-                 <h3><i class="bi bi-geo-alt"></i> Thông Tin Địa Điểm</h3>
-                 <c:if test="${not empty venue}">
-                     <div class="venue-info">
-                         <div class="venue-name">${venue.name}</div>
-                         <div class="venue-address">${venue.address}</div>
-                         <c:if test="${not empty venue.capacity}">
-                             <div class="venue-capacity">Sức chứa: ${venue.capacity} người</div>
-                         </c:if>
-                     </div>
-                 </c:if>
-                 <c:if test="${empty venue}">
-                     <p class="text-muted">Chưa có thông tin địa điểm</p>
-                 </c:if>
-             </div>
+                           <div class="detail-card">
+                  <h3><i class="bi bi-geo-alt"></i> Thông Tin Địa Điểm</h3>
+                  <c:if test="${not empty venue}">
+                      <div class="venue-info">
+                          <div class="venue-name">${venue.name}</div>
+                          <div class="venue-address">${venue.address}</div>
+                          <c:if test="${not empty venue.capacity}">
+                              <div class="venue-capacity">Sức chứa: ${venue.capacity} người</div>
+                          </c:if>
+                      </div>
+                  </c:if>
+                  <c:if test="${empty venue}">
+                      <p class="text-muted">Chưa có thông tin địa điểm</p>
+                  </c:if>
+                  
+                  <!-- Zone Information -->
+                  <c:if test="${not empty eventZones}">
+                      <div class="zone-info">
+                          <h4><i class="bi bi-ticket-perforated"></i> Khu Vực Vé</h4>
+                          <div class="zone-list">
+                              <c:forEach var="zone" items="${eventZones}">
+                                  <div class="zone-item">
+                                      <div class="zone-name">${zone.venueZoneName}</div>
+                                      <div class="zone-price">${zone.price} ${zone.currency}</div>
+                                  </div>
+                              </c:forEach>
+                          </div>
+                      </div>
+                  </c:if>
+              </div>
          </div>
          
-         <!-- Add to Cart Section -->
-         <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
-             <div class="add-to-cart-section">
+                   <!-- Add to Cart Section -->
+          <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
+              <div class="add-to-cart-section" style="margin-top: 3rem;">
                  <div class="detail-card">
                      <h3><i class="bi bi-cart-plus"></i> Đặt Vé</h3>
                      <c:if test="${not empty eventZones}">

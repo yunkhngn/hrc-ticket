@@ -2,9 +2,11 @@ package hrc.controller;
 
 import hrc.service.EventService;
 import hrc.dao.EventArtistDAO;
+import hrc.dao.VenueDAO;
 import hrc.entity.Event;
 import hrc.entity.EventZone;
 import hrc.entity.EventArtist;
+import hrc.entity.Venue;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,10 +21,12 @@ import java.util.Map;
 public class EventController extends HttpServlet {
     private final EventService eventService;
     private final EventArtistDAO eventArtistDAO;
+    private final VenueDAO venueDAO;
     
     public EventController() {
         this.eventService = new EventService();
         this.eventArtistDAO = new EventArtistDAO();
+        this.venueDAO = new VenueDAO();
     }
     
     @Override
@@ -38,14 +42,22 @@ public class EventController extends HttpServlet {
             // Create a map to store artists for each event
             Map<Long, List<EventArtist>> eventArtistsMap = new HashMap<>();
             
-            // For each event, get its artists
+            // Create a map to store venues for each event
+            Map<Long, Venue> eventVenuesMap = new HashMap<>();
+            
+            // For each event, get its artists and venue
             for (Event event : events) {
                 List<EventArtist> artists = eventArtistDAO.findByEventId(event.getId());
                 eventArtistsMap.put(event.getId(), artists);
+                
+                // Get venue information
+                Venue venue = venueDAO.findById(event.getVenueId());
+                eventVenuesMap.put(event.getId(), venue);
             }
             
             request.setAttribute("events", events);
             request.setAttribute("eventArtistsMap", eventArtistsMap);
+            request.setAttribute("eventVenuesMap", eventVenuesMap);
             
             // Pass through any success/error messages from other controllers
             String success = request.getParameter("success");
