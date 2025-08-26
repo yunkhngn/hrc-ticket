@@ -25,6 +25,19 @@ public class CartController extends HttpServlet {
         
         HttpSession session = request.getSession();
         
+        // Check if user is logged in and is a customer
+        String userRole = (String) session.getAttribute("userRole");
+        if (userRole == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        
+        // Only customers can access cart
+        if (!"CUSTOMER".equals(userRole)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Only customers can access cart");
+            return;
+        }
+        
         // Get cart items from session
         @SuppressWarnings("unchecked")
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
@@ -48,8 +61,22 @@ public class CartController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String action = request.getParameter("action");
         HttpSession session = request.getSession();
+        
+        // Check if user is logged in and is a customer
+        String userRole = (String) session.getAttribute("userRole");
+        if (userRole == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        
+        // Only customers can access cart
+        if (!"CUSTOMER".equals(userRole)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Only customers can access cart");
+            return;
+        }
+        
+        String action = request.getParameter("action");
         
         if ("add".equals(action)) {
             // Add item to cart

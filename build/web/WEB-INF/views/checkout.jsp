@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Checkout - HRC</title>
+    <title>Checkout - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Checkout</h1>
+    <h1>Hanoi Rock City - Checkout</h1>
     
     <c:if test="${not empty error}">
         <div class="error">
@@ -34,7 +34,40 @@
             </div>
             
             <div class="order-total">
-                <h3>Total Amount: <fmt:formatNumber value="${cartTotal}" type="currency" currencySymbol="VND"/></h3>
+                <h3>Subtotal: <fmt:formatNumber value="${cartTotal}" type="currency" currencySymbol="VND"/></h3>
+                
+                <!-- Promo Code Section -->
+                <div class="promo-code-section" style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; background-color: #f8f9fa;">
+                    <h4>Apply Promo Code</h4>
+                    
+                    <c:if test="${not empty promoCodeError}">
+                        <p style="color: red;">${promoCodeError}</p>
+                    </c:if>
+                    
+                    <c:if test="${not empty promoCodeSuccess}">
+                        <p style="color: green;">${promoCodeSuccess}</p>
+                    </c:if>
+                    
+                    <form action="${pageContext.request.contextPath}/checkout" method="post" style="display: flex; gap: 10px; align-items: center;">
+                        <input type="hidden" name="action" value="applyPromoCode">
+                        <input type="text" name="promoCode" placeholder="Enter promo code" 
+                               value="${appliedPromoCode}" style="padding: 8px; flex: 1;">
+                        <button type="submit" style="padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer;">Apply</button>
+                    </form>
+                    
+                    <c:if test="${not empty appliedPromoCode}">
+                        <div style="margin-top: 10px;">
+                            <p><strong>Applied Promo Code:</strong> ${appliedPromoCode}</p>
+                            <p><strong>Discount:</strong> <fmt:formatNumber value="${discountAmount}" type="currency" currencySymbol="VND"/></p>
+                            <form action="${pageContext.request.contextPath}/checkout" method="post" style="display: inline;">
+                                <input type="hidden" name="action" value="removePromoCode">
+                                <button type="submit" style="padding: 5px 10px; background: #dc3545; color: white; border: none; cursor: pointer; font-size: 12px;">Remove</button>
+                            </form>
+                        </div>
+                    </c:if>
+                </div>
+                
+                <h3>Final Total: <fmt:formatNumber value="${finalTotal}" type="currency" currencySymbol="VND"/></h3>
             </div>
         </c:if>
     </div>
@@ -55,7 +88,7 @@
                     <li><strong>Bank:</strong> Vietcombank</li>
                     <li><strong>Account Number:</strong> 1234567890</li>
                     <li><strong>Account Name:</strong> Hanoi Rock Concert</li>
-                    <li><strong>Amount:</strong> <fmt:formatNumber value="${cartTotal}" type="currency" currencySymbol="VND"/></li>
+                    <li><strong>Amount:</strong> <fmt:formatNumber value="${finalTotal}" type="currency" currencySymbol="VND"/></li>
                 </ul>
                 <p>After making the transfer, please enter the reference number provided by your bank above.</p>
             </div>

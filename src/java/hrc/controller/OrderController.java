@@ -35,18 +35,19 @@ public class OrderController extends HttpServlet {
         String pathInfo = request.getServletPath();
         
         if ("/orders".equals(pathInfo)) {
-            // List orders
-            List<Order> orders;
+            // Redirect staff and admin users to admin orders management
             if ("ADMIN".equals(userRole) || "STAFF".equals(userRole)) {
-                orders = orderService.getAllOrders();
+                response.sendRedirect(request.getContextPath() + "/admin/orders");
+                return;
+            }
+            
+            // For customers, show only their orders
+            List<Order> orders;
+            Long customerId = (Long) session.getAttribute("customerId");
+            if (customerId != null) {
+                orders = orderService.getOrdersByCustomer(customerId);
             } else {
-                // For customers, show only their orders
-                Long customerId = (Long) session.getAttribute("customerId");
-                if (customerId != null) {
-                    orders = orderService.getOrdersByCustomer(customerId);
-                } else {
-                    orders = List.of(); // Empty list if no customer ID
-                }
+                orders = List.of(); // Empty list if no customer ID
             }
             
             request.setAttribute("orders", orders);

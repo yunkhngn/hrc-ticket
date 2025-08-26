@@ -62,9 +62,11 @@
     </c:if>
     
     <div class="navigation">
-        <a href="${pageContext.request.contextPath}/cart">View Cart</a>
-        <c:if test="${sessionScope.userRole eq 'ADMIN'}">
-            <a href="${pageContext.request.contextPath}/admin/events">Admin Events</a>
+        <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
+            <a href="${pageContext.request.contextPath}/cart">View Cart</a>
+        </c:if>
+        <c:if test="${sessionScope.userRole eq 'ADMIN' || sessionScope.userRole eq 'STAFF'}">
+            <a href="${pageContext.request.contextPath}/admin/events">Manage Events</a>
         </c:if>
         <c:if test="${not empty sessionScope.userRole}">
             <a href="${pageContext.request.contextPath}/orders">My Orders</a>

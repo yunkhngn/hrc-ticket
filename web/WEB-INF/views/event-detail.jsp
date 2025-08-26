@@ -75,7 +75,9 @@
     
     <div class="navigation" style="margin-top: 30px; padding: 20px 0; border-top: 1px solid #ddd;">
         <a href="${pageContext.request.contextPath}/events" style="display: inline-block; padding: 10px 20px; background: #6c757d; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">← Back to Events</a>
-        <a href="${pageContext.request.contextPath}/cart" style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">🛒 View Cart</a>
+        <c:if test="${sessionScope.userRole eq 'CUSTOMER'}">
+            <a href="${pageContext.request.contextPath}/cart" style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">🛒 View Cart</a>
+        </c:if>
         <c:if test="${not empty sessionScope.userRole}">
             <a href="${pageContext.request.contextPath}/orders" style="display: inline-block; padding: 10px 20px; background: #17a2b8; color: white; text-decoration: none; margin: 5px; border-radius: 4px;">📋 My Orders</a>
         </c:if>

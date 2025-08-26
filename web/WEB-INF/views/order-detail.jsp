@@ -76,8 +76,8 @@
     <div class="navigation">
         <a href="${pageContext.request.contextPath}/orders">My Orders</a>
         <a href="${pageContext.request.contextPath}/events">Browse Events</a>
-        <c:if test="${sessionScope.userRole eq 'ADMIN'}">
-            <a href="${pageContext.request.contextPath}/admin/orders">Admin Orders</a>
+        <c:if test="${sessionScope.userRole eq 'ADMIN' || sessionScope.userRole eq 'STAFF'}">
+            <a href="${pageContext.request.contextPath}/admin/orders">Manage Orders</a>
         </c:if>
     </div>
 </body>
