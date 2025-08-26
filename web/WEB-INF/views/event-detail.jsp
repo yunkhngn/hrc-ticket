@@ -52,18 +52,31 @@
         <div class="zones-list">
             <c:forEach var="zone" items="${zones}">
                 <div class="zone-item">
-                    <h3>Zone ${zone.id}</h3>
+                    <h3>${zone.venueZoneName != null ? zone.venueZoneName : 'Zone ' + zone.id}</h3>
                     <p><strong>Price:</strong> <fmt:formatNumber value="${zone.price}" type="currency" currencySymbol="VND"/></p>
                     <p><strong>Fee:</strong> <fmt:formatNumber value="${zone.fee}" type="currency" currencySymbol="VND"/></p>
                     <p><strong>Allocation:</strong> ${zone.allocation} tickets</p>
                     
-                    <form action="${pageContext.request.contextPath}/cart" method="post">
-                        <input type="hidden" name="action" value="add">
-                        <input type="hidden" name="eventZoneId" value="${zone.id}">
-                        <label for="quantity-${zone.id}">Quantity:</label>
-                        <input type="number" id="quantity-${zone.id}" name="quantity" value="1" min="1" max="10">
-                        <button type="submit">Add to Cart</button>
-                    </form>
+                    <c:if test="${event.status eq 'ONSALE'}">
+                        <form action="${pageContext.request.contextPath}/cart" method="post">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="eventZoneId" value="${zone.id}">
+                            <label for="quantity-${zone.id}">Quantity:</label>
+                            <input type="number" id="quantity-${zone.id}" name="quantity" value="1" min="1" max="10">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </c:if>
+                    <c:if test="${event.status ne 'ONSALE'}">
+                        <p style="color: #dc3545; font-weight: bold;">
+                            <c:choose>
+                                <c:when test="${event.status eq 'DRAFT'}">Event is in draft mode</c:when>
+                                <c:when test="${event.status eq 'SOLDOUT'}">Event is sold out</c:when>
+                                <c:when test="${event.status eq 'CLOSED'}">Event is closed</c:when>
+                                <c:when test="${event.status eq 'CANCELLED'}">Event is cancelled</c:when>
+                                <c:otherwise>Event is not available for purchase</c:otherwise>
+                            </c:choose>
+                        </p>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>

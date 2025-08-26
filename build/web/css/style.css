@@ -1,0 +1,516 @@
+/* Hanoi Rock City - Bootstrap Theme CSS */
+
+/* Custom CSS Variables for Bootstrap Override */
+:root {
+    --bs-primary: #e74c3c;
+    --bs-primary-rgb: 231, 76, 60;
+    --bs-secondary: #2c3e50;
+    --bs-secondary-rgb: 44, 62, 80;
+    --bs-success: #27ae60;
+    --bs-danger: #e74c3c;
+    --bs-warning: #f39c12;
+    --bs-info: #3498db;
+    --bs-dark: #2c3e50;
+    --bs-light: #ecf0f1;
+    
+    /* Custom colors */
+    --accent-red: #e74c3c;
+    --accent-red-dark: #c0392b;
+    --accent-black: #2c3e50;
+    --accent-gray: #7f8c8d;
+    --accent-light-gray: #ecf0f1;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --text-muted: #95a5a6;
+    --border-color: #ecf0f1;
+}
+
+/* Custom Bootstrap Overrides */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary);
+}
+
+/* Custom Header */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--accent-red) !important;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-primary) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--accent-red) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--accent-red) !important;
+    font-weight: 600;
+}
+
+/* Custom Event Cards */
+.event-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    position: relative;
+}
+
+.event-image::before {
+    content: 'ROCK';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.event-content {
+    padding: 1.5rem;
+}
+
+.event-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.event-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.event-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.event-meta-label {
+    font-weight: 600;
+    color: var(--accent-red);
+    min-width: 60px;
+}
+
+.event-meta-value {
+    color: var(--text-primary);
+}
+
+/* Custom Cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-onsale {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.status-draft {
+    background: linear-gradient(135deg, #ffa502, #ff6b35);
+    color: white;
+}
+
+.status-cancelled {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.status-pending {
+    background: linear-gradient(135deg, #ffa502, #ff6b35);
+    color: white;
+}
+
+.status-paid {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.status-confirmed {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.status-failed {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+/* Artists Section */
+.artists-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.artist-item {
+    background: var(--secondary-bg);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid var(--accent-yellow);
+    transition: all 0.3s ease;
+}
+
+.artist-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--accent-red);
+}
+
+.artist-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.headliner-badge {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow);
+}
+
+.btn-primary {
+    background: var(--accent-red);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--accent-gray);
+    color: white;
+}
+
+.btn-success {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--accent-red);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:hover {
+    background: var(--accent-red-dark);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--secondary-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--secondary-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Order Management */
+.order-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-id {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.message.success {
+    background: rgba(46, 213, 115, 0.2);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.message.error {
+    background: rgba(255, 71, 87, 0.2);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .event-meta {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Rock-themed decorative elements */
+.rock-accent {
+    position: relative;
+}
+
+.rock-accent::after {
+    content: 'ROCK';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 0.6rem;
+    opacity: 0.3;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Grid Layouts */
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Footer */
+.footer {
+    background: var(--accent-black);
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+}
+
+.footer-section p, .footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.footer-section a:hover {
+    color: var(--accent-red);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }

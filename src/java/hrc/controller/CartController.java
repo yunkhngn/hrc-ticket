@@ -2,9 +2,11 @@ package hrc.controller;
 
 import hrc.dao.EventZoneDAO;
 import hrc.dao.EventDAO;
+import hrc.dao.VenueZoneDAO;
 import hrc.entity.CartItem;
 import hrc.entity.Event;
 import hrc.entity.EventZone;
+import hrc.entity.VenueZone;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -99,11 +101,22 @@ public class CartController extends HttpServlet {
                             Event event = eventDAO.findById(eventZone.getEventId());
                             
                             if (event != null) {
+                                // Check if event is on sale
+                                if (!"ONSALE".equals(event.getStatus())) {
+                                    response.sendRedirect(request.getContextPath() + "/events?error=Event+is+not+available+for+purchase.+Status:+${event.getStatus()}");
+                                    return;
+                                }
+                                
+                                // Get venue zone details to get the actual zone name
+                                VenueZoneDAO venueZoneDAO = new VenueZoneDAO();
+                                VenueZone venueZone = venueZoneDAO.findById(eventZone.getVenueZoneId());
+                                String zoneName = venueZone != null ? venueZone.getName() : "Zone " + eventZone.getId();
+                                
                                 // Create cart item
                                 CartItem cartItem = new CartItem(
                                     eventZoneId,
                                     event.getName(),
-                                    "Zone " + eventZone.getId(), // You might want to get actual zone name
+                                    zoneName,
                                     quantity,
                                     eventZone.getPrice(),
                                     eventZone.getFee()
