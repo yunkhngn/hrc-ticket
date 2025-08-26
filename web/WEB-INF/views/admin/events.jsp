@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin - Events Management</title>
+    <title>Admin - Events Management - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Events Management</h1>
+    <h1>Hanoi Rock City - Events Management</h1>
     
     <c:if test="${not empty success}">
         <div class="success">

@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin - Promo Codes Management</title>
+    <title>Admin - Promo Codes Management - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Promo Codes Management</h1>
+    <h1>Hanoi Rock City - Promo Codes Management</h1>
     
     <c:if test="${not empty success}">
         <div class="success">
@@ -49,7 +49,7 @@
                     <p><strong>Valid From:</strong> 
                         <c:choose>
                             <c:when test="${promoCode.startAt != null}">
-                                <fmt:formatDate value="${promoCode.startAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                <fmt:formatDateTime value="${promoCode.startAt}" pattern="yyyy-MM-dd HH:mm"/>
                             </c:when>
                             <c:otherwise>No start date</c:otherwise>
                         </c:choose>
@@ -57,9 +57,17 @@
                     <p><strong>Valid Until:</strong> 
                         <c:choose>
                             <c:when test="${promoCode.endAt != null}">
-                                <fmt:formatDate value="${promoCode.endAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                <fmt:formatDateTime value="${promoCode.endAt}" pattern="yyyy-MM-dd HH:mm"/>
                             </c:when>
                             <c:otherwise>No end date</c:otherwise>
+                        </c:choose>
+                    </p>
+                    <p><strong>Created:</strong> 
+                        <c:choose>
+                            <c:when test="${promoCode.createdAt != null}">
+                                <fmt:formatDateTime value="${promoCode.createdAt}" pattern="yyyy-MM-dd HH:mm"/>
+                            </c:when>
+                            <c:otherwise>Unknown</c:otherwise>
                         </c:choose>
                     </p>
                     

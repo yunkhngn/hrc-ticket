@@ -14,7 +14,7 @@ public class PromoCodeDAO {
     
     public List<PromoCode> list() {
         List<PromoCode> promoCodes = new ArrayList<>();
-        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount FROM PromoCodes ORDER BY created_at DESC";
+        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount, created_at FROM PromoCodes ORDER BY created_at DESC";
         
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,6 +40,12 @@ public class PromoCodeDAO {
                 }
                 
                 promoCode.setMinOrderAmount(rs.getBigDecimal("min_order_amount"));
+                
+                Timestamp createdAt = rs.getTimestamp("created_at");
+                if (createdAt != null) {
+                    promoCode.setCreatedAt(createdAt.toLocalDateTime());
+                }
+                
                 promoCodes.add(promoCode);
             }
         } catch (SQLException e) {
@@ -49,7 +55,7 @@ public class PromoCodeDAO {
     }
     
     public PromoCode findById(Long id) {
-        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount FROM PromoCodes WHERE id = ?";
+        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount, created_at FROM PromoCodes WHERE id = ?";
         
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -76,6 +82,12 @@ public class PromoCodeDAO {
                     }
                     
                     promoCode.setMinOrderAmount(rs.getBigDecimal("min_order_amount"));
+                    
+                    Timestamp createdAt = rs.getTimestamp("created_at");
+                    if (createdAt != null) {
+                        promoCode.setCreatedAt(createdAt.toLocalDateTime());
+                    }
+                    
                     return promoCode;
                 }
             }
@@ -86,7 +98,7 @@ public class PromoCodeDAO {
     }
     
     public PromoCode findByCode(String code) {
-        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount FROM PromoCodes WHERE code = ?";
+        String sql = "SELECT id, code, discount_type, discount_value, max_uses, per_customer_limit, start_at, end_at, min_order_amount, created_at FROM PromoCodes WHERE code = ?";
         
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -113,6 +125,12 @@ public class PromoCodeDAO {
                     }
                     
                     promoCode.setMinOrderAmount(rs.getBigDecimal("min_order_amount"));
+                    
+                    Timestamp createdAt = rs.getTimestamp("created_at");
+                    if (createdAt != null) {
+                        promoCode.setCreatedAt(createdAt.toLocalDateTime());
+                    }
+                    
                     return promoCode;
                 }
             }

@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin - Event Zones Management</title>
+    <title>Admin - Event Zones Management - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Event Zones Management</h1>
+    <h1>Hanoi Rock City - Event Zones Management</h1>
     
     <div class="event-info" style="background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 5px;">
         <h2>${event.name}</h2>

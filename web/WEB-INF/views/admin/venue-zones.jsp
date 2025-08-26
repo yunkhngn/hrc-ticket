@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin - Venue Zones Management</title>
+    <title>Admin - Venue Zones Management - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Venue Zones Management - ${venue.name}</h1>
+    <h1>Hanoi Rock City - Venue Zones Management - ${venue.name}</h1>
     <p><strong>Venue:</strong> ${venue.name} - ${venue.city}</p>
     
     <c:if test="${not empty success}">

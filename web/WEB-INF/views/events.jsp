@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Events - HRC</title>
+    <title>Events - Hanoi Rock City</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Rock Concerts</h1>
+    <h1>Hanoi Rock City - Rock Concerts</h1>
     
     <c:if test="${not empty success}">
         <div class="success">

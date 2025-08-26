@@ -13,12 +13,13 @@ public class PromoCode {
     private LocalDateTime startAt;
     private LocalDateTime endAt;
     private BigDecimal minOrderAmount;
+    private LocalDateTime createdAt;
     
     public PromoCode() {}
     
     public PromoCode(Long id, String code, String discountType, BigDecimal discountValue, 
                      Integer maxUses, Integer perCustomerLimit, LocalDateTime startAt, 
-                     LocalDateTime endAt, BigDecimal minOrderAmount) {
+                     LocalDateTime endAt, BigDecimal minOrderAmount, LocalDateTime createdAt) {
         this.id = id;
         this.code = code;
         this.discountType = discountType;
@@ -28,6 +29,7 @@ public class PromoCode {
         this.startAt = startAt;
         this.endAt = endAt;
         this.minOrderAmount = minOrderAmount;
+        this.createdAt = createdAt;
     }
     
     public Long getId() {
@@ -100,5 +102,13 @@ public class PromoCode {
     
     public void setMinOrderAmount(BigDecimal minOrderAmount) {
         this.minOrderAmount = minOrderAmount;
+    }
+    
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
