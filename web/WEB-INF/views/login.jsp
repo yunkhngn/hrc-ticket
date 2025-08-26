@@ -18,6 +18,106 @@
             --hrc-light-gray: #f8f9fa;
         }
         
+        body {
+            background-image: url('${pageContext.request.contextPath}/img/HRC-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.6), rgba(26, 26, 26, 0.7));
+            z-index: -1;
+        }
+        
+        /* Make buttons more prominent */
+        .btn {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline-secondary {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: #6c757d !important;
+            color: #6c757d !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: #6c757d !important;
+            border-color: #6c757d !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Form styling */
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--hrc-red);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+            background-color: rgba(255, 255, 255, 0.95);
+            outline: none;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--hrc-dark);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-label i {
+            margin-right: 0.5rem;
+            color: var(--hrc-red);
+        }
+        
+        .mb-3 {
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+        }
+        
         /* Header Styles */
         .header {
             background-color: black;
@@ -174,11 +274,13 @@
              font-weight: 700;
          }
          
-         .user-link.logout:hover {
-             background: linear-gradient(135deg, #c0392b, #a93226);
-             transform: translateY(-2px);
-             box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
-         }
+                 .user-link.logout:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+        }
+        
+
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -186,6 +288,8 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+            
+
             
             .nav-links {
                 gap: 1rem;
@@ -246,13 +350,13 @@
     <!-- Main Content -->
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: none; border-radius: 16px;">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <i class="bi bi-music-note-beamed text-danger" style="font-size: 3rem;"></i>
-                            <h2 class="mt-3">Welcome Back</h2>
-                            <p class="text-muted">Login to your Hanoi Rock City account</p>
+                            <h2 class="mt-3" style="font-weight: 700; color: var(--hrc-dark);">Chào Mừng Trở Lại</h2>
+                            <p class="text-muted">Đăng nhập vào tài khoản Hanoi Rock City của bạn</p>
                         </div>
                         
                         <c:if test="${not empty error}">
@@ -272,14 +376,14 @@
                         <form action="${pageContext.request.contextPath}/login" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">
-                                    <i class="bi bi-envelope"></i> Email Address
+                                    <i class="bi bi-envelope"></i> Địa Chỉ Email
                                 </label>
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="password" class="form-label">
-                                    <i class="bi bi-lock"></i> Password
+                                    <i class="bi bi-lock"></i> Mật Khẩu
                                 </label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
@@ -288,7 +392,7 @@
                             
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="bi bi-box-arrow-in-right"></i> Login
+                                    <i class="bi bi-box-arrow-in-right"></i> Đăng Nhập
                                 </button>
                             </div>
                         </form>
@@ -303,11 +407,7 @@
                     </div>
                 </div>
                 
-                <div class="text-center mt-4">
-                    <a href="${pageContext.request.contextPath}/events" class="btn btn-outline-secondary">
-                        <i class="bi bi-music-note"></i> View Events
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>

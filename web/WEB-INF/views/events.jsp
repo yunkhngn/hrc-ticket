@@ -308,9 +308,19 @@
         .search-input {
             width: 100%;
             padding: 0.75rem 1rem 0.75rem 2.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 2px solid var(--hrc-red);
+            border-radius: 8px;
             font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--hrc-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--hrc-red);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+            background-color: white;
         }
         
         .search-icon {
@@ -318,22 +328,29 @@
             left: 0.75rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #666;
+            color: var(--hrc-red);
+            font-size: 1.1rem;
         }
         
         .search-btn {
-            background-color: #007bff;
+            background: linear-gradient(135deg, var(--hrc-red), #c0392b);
             color: white;
-            border: none;
+            border: 2px solid var(--hrc-red);
             padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 500;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
         }
         
         .search-btn:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
         }
         
 
@@ -666,6 +683,18 @@
              .header-content {
                  flex-direction: column;
                  gap: 1rem;
+             }
+             
+             .banner-section {
+                 height: 300px;
+             }
+             
+             .banner-title {
+                 font-size: 2.5rem;
+             }
+             
+             .banner-subtitle {
+                 font-size: 1.2rem;
              }
              
              .nav-links {
