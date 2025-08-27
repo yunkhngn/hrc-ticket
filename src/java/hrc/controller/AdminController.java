@@ -50,9 +50,16 @@ public class AdminController extends HttpServlet {
         // Count total orders
         long totalOrders = orders.size();
         
+        // Calculate total revenue from confirmed orders
+        double totalRevenue = orders.stream()
+                .filter(order -> "CONFIRMED".equals(order.getPaymentStatus()))
+                .mapToDouble(order -> order.getPaidAmount().doubleValue())
+                .sum();
+        
         request.setAttribute("totalEvents", totalEvents);
         request.setAttribute("totalOrders", totalOrders);
         request.setAttribute("pendingOrders", pendingOrders);
+        request.setAttribute("totalRevenue", totalRevenue);
         
         // Get recent orders (up to 5)
         List<Order> recentOrders = orders.size() > 5 ? orders.subList(0, 5) : orders;

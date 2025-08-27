@@ -280,12 +280,12 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-icon">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="bi bi-currency-exchange"></i>
                     </div>
                     <div class="stats-number">
-                        <fmt:formatNumber value="${totalOrders * 50}" pattern="#,###"/>
+                        <fmt:formatNumber value="${totalRevenue}" pattern="#,###"/>
                     </div>
-                    <div class="stats-label">Estimated Revenue (VND)</div>
+                    <div class="stats-label">Total Revenue (VND)</div>
                 </div>
             </div>
         </div>

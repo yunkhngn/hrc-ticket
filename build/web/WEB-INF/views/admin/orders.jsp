@@ -36,137 +36,60 @@
             padding: 0;
         }
         
-        /* Header Styles */
-        .admin-header {
-            background-color: black;
-            color: white;
+        .navbar {
+            background: var(--hrc-dark);
             padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .navbar-brand {
             color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
         }
         
-        .logo:hover {
-            color: var(--hrc-red);
-            text-decoration: none;
-        }
-        
-        .logo-text {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .nav-links a {
+        .navbar-nav .nav-link {
             color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.85rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
         }
         
-        .nav-links a:hover {
+        .navbar-nav .nav-link:hover {
             color: var(--hrc-red);
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-        
-        .nav-links a.active {
-            background: var(--hrc-gradient);
-            color: white;
         }
         
         .logout-btn {
-            background: var(--hrc-gradient);
+            background: var(--hrc-red);
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 6px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: background-color 0.3s ease;
         }
         
         .logout-btn:hover {
-            background: linear-gradient(135deg, #c0392b, #a93226);
+            background: #c0392b;
             color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
         }
         
-        /* Page Header */
-        .page-header {
+        .admin-header {
             background: linear-gradient(135deg, var(--hrc-dark), var(--hrc-gray));
             color: white;
-            padding: 3rem 0;
+            padding: 2rem 0;
             margin-bottom: 2rem;
         }
         
-        .page-header h1 {
+        .admin-header h1 {
             margin: 0;
             font-size: 2.5rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
         }
         
-        .page-header p {
+        .admin-header p {
             margin: 0.5rem 0 0 0;
             opacity: 0.8;
             font-size: 1.1rem;
-        }
-        
-        /* Main Container */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
         
         /* Stats Cards */
@@ -594,60 +517,50 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="admin-header">
-        <div class="header-content">
-            <div class="logo-section">
-                <a href="${pageContext.request.contextPath}/admin" class="logo">
-                    <i class="bi bi-gear-fill"></i>
-                    <div>
-                        <div>HRC Admin</div>
-                        <div class="logo-text">Management Panel</div>
-                    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">
+                <i class="bi bi-gear-fill"></i> HRC Admin
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/events">
+                    <i class="bi bi-calendar-event"></i> Events
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/orders">
+                    <i class="bi bi-list-ul"></i> Orders
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/venues">
+                    <i class="bi bi-building"></i> Venues
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/artists">
+                    <i class="bi bi-music-note-beamed"></i> Artists
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/customers">
+                    <i class="bi bi-people"></i> Customers
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/accounts">
+                    <i class="bi bi-person-gear"></i> Accounts
+                </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/promo-codes">
+                    <i class="bi bi-tag"></i> Promo Codes
+                </a>
+                <a class="logout-btn" href="${pageContext.request.contextPath}/logout">
+                    <i class="bi bi-box-arrow-right"></i> Logout
                 </a>
             </div>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="${pageContext.request.contextPath}/admin/events">
-                        <i class="bi bi-calendar-event"></i> Events
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/orders" class="active">
-                        <i class="bi bi-list-ul"></i> Orders
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/venues">
-                        <i class="bi bi-building"></i> Venues
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/artists">
-                        <i class="bi bi-music-note-beamed"></i> Artists
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/customers">
-                        <i class="bi bi-people"></i> Customers
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/accounts">
-                        <i class="bi bi-person-gear"></i> Accounts
-                    </a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/promo-codes">
-                        <i class="bi bi-tag"></i> Promo Codes
-                    </a></li>
-                </ul>
-            </nav>
-            
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">
-                <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
         </div>
-    </header>
+    </nav>
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="main-container">
+    <!-- Header -->
+    <div class="admin-header">
+        <div class="container">
             <h1><i class="bi bi-list-ul"></i> Orders Management</h1>
             <p>Manage and process customer orders efficiently</p>
         </div>
     </div>
 
-    <div class="main-container">
+    <div class="container">
         <!-- Stats Section -->
         <div class="stats-section">
             <div class="stat-card">
@@ -694,9 +607,6 @@
                         <button class="btn btn-outline-primary" onclick="refreshPage()">
                             <i class="bi bi-arrow-clockwise"></i> Refresh
                         </button>
-                        <button class="btn btn-success" onclick="exportOrders()">
-                            <i class="bi bi-download"></i> Export
-                        </button>
                     </div>
                 </div>
 
@@ -713,12 +623,12 @@
                                     ${order.createdAt.dayOfMonth}/${order.createdAt.monthValue}/${order.createdAt.year} ${order.createdAt.hour}:${order.createdAt.minute < 10 ? '0' : ''}${order.createdAt.minute}
                                 </div>
                             </div>
-                            <div class="order-status">
-                                <span class="status-badge status-${order.paymentStatus.toLowerCase()}">
-                                    <i class="bi bi-${order.paymentStatus eq 'CONFIRMED' ? 'check-circle' : order.paymentStatus eq 'PENDING' ? 'clock' : order.paymentStatus eq 'FAILED' ? 'x-circle' : 'question-circle'}"></i>
-                                    ${order.paymentStatus}
-                                </span>
-                            </div>
+                                                         <div class="order-status">
+                                 <span class="status-badge status-${order.paymentStatus.toLowerCase()}">
+                                     <i class="bi bi-${order.paymentStatus eq 'CONFIRMED' ? 'check-circle' : order.paymentStatus eq 'PENDING' ? 'clock' : order.paymentStatus eq 'FAILED' ? 'x-circle' : 'question-circle'}"></i>
+                                     Payment: ${order.paymentStatus}
+                                 </span>
+                             </div>
                         </div>
                         
                         <div class="order-details">
@@ -744,17 +654,17 @@
                                     <fmt:formatNumber value="${order.paidAmount}" pattern="#,###"/> VND
                                 </div>
                             </div>
-                            <div class="detail-item">
-                                <div class="detail-label">
-                                    <i class="bi bi-tag"></i> Order Status
-                                </div>
-                                <div class="detail-value">
-                                    <span class="status-badge status-${order.status.toLowerCase()}">
-                                        <i class="bi bi-${order.status eq 'PENDING' ? 'clock' : order.status eq 'CONFIRMED' ? 'check-circle' : order.status eq 'CANCELLED' ? 'x-circle' : 'question-circle'}"></i>
-                                        ${order.status}
-                                    </span>
-                                </div>
-                            </div>
+                                                         <div class="detail-item">
+                                 <div class="detail-label">
+                                     <i class="bi bi-tag"></i> Processing Status
+                                 </div>
+                                 <div class="detail-value">
+                                     <span class="status-badge status-${order.status.toLowerCase()}">
+                                         <i class="bi bi-${order.status eq 'PENDING' ? 'clock' : order.status eq 'CONFIRMED' ? 'check-circle' : order.status eq 'CANCELLED' ? 'x-circle' : 'question-circle'}"></i>
+                                         ${order.status}
+                                     </span>
+                                 </div>
+                             </div>
                         </div>
                         
                         <div class="order-actions">
@@ -814,11 +724,6 @@
     <script>
         function refreshPage() {
             window.location.reload();
-        }
-        
-        function exportOrders() {
-            // Simple export functionality - could be enhanced with actual CSV export
-            alert('Export functionality will be implemented soon!');
         }
         
         // Auto-hide alerts after 5 seconds
