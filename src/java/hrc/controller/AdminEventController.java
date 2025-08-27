@@ -42,9 +42,20 @@ public class AdminEventController extends HttpServlet {
         
         // List all events for admin
         List<Event> events = eventService.getAllEvents();
+        
+        // Get venue names for each event
+        for (Event event : events) {
+            Venue venue = venueDAO.findById(event.getVenueId());
+            if (venue != null) {
+                event.setVenueName(venue.getName());
+            } else {
+                event.setVenueName("Unknown Venue");
+            }
+        }
+        
         request.setAttribute("events", events);
         
-        // List all venues for dropdown
+        // List all venues for dropdown and for name lookup
         List<Venue> venues = venueDAO.list();
         request.setAttribute("venues", venues);
         

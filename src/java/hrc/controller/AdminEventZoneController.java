@@ -3,9 +3,11 @@ package hrc.controller;
 import hrc.dao.EventZoneDAO;
 import hrc.dao.VenueZoneDAO;
 import hrc.dao.EventDAO;
+import hrc.dao.VenueDAO;
 import hrc.entity.EventZone;
 import hrc.entity.VenueZone;
 import hrc.entity.Event;
+import hrc.entity.Venue;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -56,8 +58,29 @@ public class AdminEventZoneController extends HttpServlet {
                 return;
             }
             
+            // Get venue name for the event
+            VenueDAO venueDAO = new VenueDAO();
+            Venue venue = venueDAO.findById(event.getVenueId());
+            if (venue != null) {
+                event.setVenueName(venue.getName());
+            } else {
+                event.setVenueName("Unknown Venue");
+            }
+            
             // Get event zones for this event
             List<EventZone> eventZones = eventZoneDAO.findByEventId(eventId);
+            
+            // Set venue zone names for each event zone
+            for (EventZone eventZone : eventZones) {
+                VenueZone venueZone = venueZoneDAO.findById(eventZone.getVenueZoneId());
+                if (venueZone != null) {
+                    eventZone.setVenueZoneName(venueZone.getName());
+                    eventZone.setVenueZoneCapacity(venueZone.getCapacity());
+                } else {
+                    eventZone.setVenueZoneName("Unknown Zone");
+                    eventZone.setVenueZoneCapacity(0);
+                }
+            }
             
             // Get available venue zones for this event's venue
             List<VenueZone> availableVenueZones = venueZoneDAO.findByVenueId(event.getVenueId());

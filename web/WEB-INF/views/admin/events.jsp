@@ -2,90 +2,104 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events Management - Hanoi Rock City</title>
+    <title>Events Management - HRC Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --hrc-red: #e74c3c;
+            --hrc-red: #dc3545;
             --hrc-dark: #1a1a1a;
             --hrc-gray: #2c2c2c;
         }
         
         body {
-            background-color: #f8f9fa;
+            background: #f8f9fa;
+            color: #333;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .admin-header {
-            background: linear-gradient(135deg, var(--hrc-dark), var(--hrc-gray));
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-        }
-        
-        .admin-header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        
-        .admin-header p {
-            margin: 0.5rem 0 0 0;
-            opacity: 0.8;
-            font-size: 1.1rem;
+            min-height: 100vh;
         }
         
         .navbar {
             background: var(--hrc-dark);
             padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .navbar-brand {
-            color: white;
+            color: white !important;
             font-weight: 700;
             font-size: 1.5rem;
         }
         
-        .navbar-nav .nav-link {
-            color: white;
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
             font-weight: 500;
-            margin: 0 0.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
-        .navbar-nav .nav-link:hover {
-            color: var(--hrc-red);
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
         }
         
         .logout-btn {
             background: var(--hrc-red);
-            color: white;
             border: none;
+            border-radius: 8px;
             padding: 0.5rem 1rem;
-            border-radius: 6px;
+            color: white !important;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .logout-btn:hover {
-            background: #c0392b;
+            background: #c82333;
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .admin-header {
+            background: var(--hrc-dark);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .admin-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: white;
+        }
+        
+        .admin-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+        }
+        
+        .alert {
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 2rem;
         }
         
         .create-btn {
             background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
             border: none;
+            color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             transition: all 0.3s ease;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -117,7 +131,7 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(135deg, var(--hrc-red), #c0392b);
+            background: linear-gradient(135deg, var(--hrc-red), #c82333);
         }
         
         .event-card:hover {
@@ -134,66 +148,13 @@
         
         .event-title {
             color: var(--hrc-dark);
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin: 0;
-            line-height: 1.2;
         }
         
         .event-status {
             margin-left: 1rem;
-        }
-        
-        .event-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .info-item:hover {
-            background: #e9ecef;
-        }
-        
-        .info-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--hrc-red), #c0392b);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1rem;
-        }
-        
-        .info-content {
-            flex: 1;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: #666;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.25rem;
-        }
-        
-        .info-value {
-            color: var(--hrc-dark);
-            font-weight: 500;
-            font-size: 1rem;
         }
         
         .status-badge {
@@ -204,8 +165,6 @@
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
         .status-onsale {
@@ -214,7 +173,7 @@
         }
         
         .status-draft {
-            background: linear-gradient(135deg, #6c757d, #495057);
+            background: linear-gradient(135deg, #6c757d, #5a6268);
             color: white;
         }
         
@@ -224,13 +183,54 @@
         }
         
         .status-closed {
-            background: linear-gradient(135deg, #6f42c1, #5a32a3);
+            background: linear-gradient(135deg, #343a40, #23272b);
             color: white;
         }
         
         .status-cancelled {
             background: linear-gradient(135deg, #fd7e14, #e55a00);
             color: white;
+        }
+        
+        .event-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .info-icon {
+            background: linear-gradient(135deg, var(--hrc-red), #c82333);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .info-content {
+            flex: 1;
+        }
+        
+        .info-label {
+            color: #6c757d;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .info-value {
+            color: var(--hrc-dark);
+            font-weight: 500;
         }
         
         .event-actions {
@@ -253,23 +253,6 @@
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .action-btn:hover::before {
-            left: 100%;
         }
         
         .btn-edit {
@@ -284,25 +267,25 @@
         }
         
         .btn-artists {
-            background: linear-gradient(135deg, #fd7e14, #e55a00);
+            background: linear-gradient(135deg, #6f42c1, #5a2d91);
             color: white;
         }
         
         .btn-artists:hover {
-            background: linear-gradient(135deg, #e55a00, #cc4a00);
+            background: linear-gradient(135deg, #5a2d91, #4a1d7a);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(253, 126, 20, 0.3);
+            box-shadow: 0 6px 16px rgba(111, 66, 193, 0.3);
         }
         
         .btn-zones {
-            background: linear-gradient(135deg, #20c997, #17a2b8);
+            background: linear-gradient(135deg, #fd7e14, #e55a00);
             color: white;
         }
         
         .btn-zones:hover {
-            background: linear-gradient(135deg, #17a2b8, #138496);
+            background: linear-gradient(135deg, #e55a00, #cc4a00);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(32, 201, 151, 0.3);
+            box-shadow: 0 6px 16px rgba(253, 126, 20, 0.3);
         }
         
         .btn-delete {
@@ -316,88 +299,63 @@
             box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3);
         }
         
-        .alert {
-            border-radius: 12px;
-            border: none;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .alert-success {
-            background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            color: #155724;
-        }
-        
-        .alert-danger {
-            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-            color: #721c24;
-        }
-        
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
-            color: #666;
+            background: white;
+            border-radius: 16px;
+            color: var(--hrc-dark);
         }
         
         .empty-state i {
             font-size: 4rem;
-            color: #ddd;
-            margin-bottom: 1.5rem;
+            color: var(--hrc-red);
+            margin-bottom: 1rem;
         }
         
         .empty-state h3 {
-            color: var(--hrc-dark);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .empty-state p {
+            color: #6c757d;
+            margin-bottom: 2rem;
         }
         
         .modal-content {
             border-radius: 16px;
             border: none;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
         
         .modal-header {
-            background: linear-gradient(135deg, var(--hrc-dark), var(--hrc-gray));
+            background: var(--hrc-dark);
             color: white;
             border-radius: 16px 16px 0 0;
-            border-bottom: none;
-            padding: 1.5rem 2rem;
         }
         
-        .modal-header h5 {
-            margin: 0;
-            font-size: 1.25rem;
+        .modal-title {
             font-weight: 600;
         }
         
-        .modal-body {
-            padding: 2rem;
-        }
-        
-        .form-control, .form-select {
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            padding: 0.875rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--hrc-red);
-            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+        .btn-close-white {
+            filter: invert(1);
         }
         
         .form-label {
             font-weight: 600;
             color: var(--hrc-dark);
-            margin-bottom: 0.5rem;
         }
         
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 1px solid #f0f0f0;
-            display: flex;
-            gap: 0.75rem;
-            justify-content: flex-end;
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--hrc-red);
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
         }
         
         .btn {
@@ -581,8 +539,8 @@
                                 <i class="bi bi-building"></i>
                             </div>
                             <div class="info-content">
-                                <div class="info-label">Venue ID</div>
-                                <div class="info-value">${event.venueId}</div>
+                                <div class="info-label">Venue</div>
+                                <div class="info-value">${event.venueName}</div>
                             </div>
                         </div>
                     </div>
@@ -603,7 +561,7 @@
                         <form action="${pageContext.request.contextPath}/admin/events" method="post" style="display: inline;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="eventId" value="${event.id}">
-                            <button type="submit" class="action-btn btn-delete" onclick="return confirm('Are you sure you want to delete this event? This will also delete all associated event zones.')">
+                            <button type="submit" class="action-btn btn-delete" onclick="return confirm('Are you sure you want to delete this event?')">
                                 <i class="bi bi-trash"></i> Delete
                             </button>
                         </form>
@@ -614,9 +572,9 @@
         
         <c:if test="${empty events}">
             <div class="empty-state">
-                <i class="bi bi-calendar-x"></i>
-                <h3>No Events Available</h3>
-                <p>Get started by creating your first event!</p>
+                <i class="bi bi-calendar-event"></i>
+                <h3>No Events Found</h3>
+                <p>Start by creating your first event for Hanoi Rock City.</p>
                 <button class="create-btn" data-bs-toggle="modal" data-bs-target="#createEventModal">
                     <i class="bi bi-plus-circle"></i> Create New Event
                 </button>
@@ -642,13 +600,12 @@
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="status" class="form-label">Status</label>
-                                <select class="form-select" id="status" name="status">
-                                    <option value="DRAFT">Draft</option>
-                                    <option value="ONSALE">On Sale</option>
-                                    <option value="SOLDOUT">Sold Out</option>
-                                    <option value="CLOSED">Closed</option>
-                                    <option value="CANCELLED">Cancelled</option>
+                                <label for="venueId" class="form-label">Venue *</label>
+                                <select class="form-select" id="venueId" name="venueId" required>
+                                    <option value="">Select a venue</option>
+                                    <c:forEach var="venue" items="${venues}">
+                                        <option value="${venue.id}">${venue.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -664,24 +621,25 @@
                                 <input type="datetime-local" class="form-control" id="startAt" name="startAt" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="endAt" class="form-label">End Date & Time (Optional)</label>
+                                <label for="endAt" class="form-label">End Date & Time</label>
                                 <input type="datetime-local" class="form-control" id="endAt" name="endAt">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="minAge" class="form-label">Minimum Age *</label>
-                                <input type="number" class="form-control" id="minAge" name="minAge" min="0" max="100" required>
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status" name="status">
+                                    <option value="DRAFT">Draft</option>
+                                    <option value="ONSALE">On Sale</option>
+                                    <option value="SOLDOUT">Sold Out</option>
+                                    <option value="CLOSED">Closed</option>
+                                    <option value="CANCELLED">Cancelled</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="venueId" class="form-label">Venue *</label>
-                                <select class="form-select" id="venueId" name="venueId" required>
-                                    <option value="">Select a venue</option>
-                                    <c:forEach var="venue" items="${venues}">
-                                        <option value="${venue.id}">${venue.name} - ${venue.city}</option>
-                                    </c:forEach>
-                                </select>
+                                <label for="minAge" class="form-label">Minimum Age *</label>
+                                <input type="number" class="form-control" id="minAge" name="minAge" min="0" max="100" required>
                             </div>
                         </div>
                     </div>
@@ -715,13 +673,12 @@
                                 <input type="text" class="form-control" id="editName" name="name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editStatus" class="form-label">Status</label>
-                                <select class="form-select" id="editStatus" name="status">
-                                    <option value="DRAFT">Draft</option>
-                                    <option value="ONSALE">On Sale</option>
-                                    <option value="SOLDOUT">Sold Out</option>
-                                    <option value="CLOSED">Closed</option>
-                                    <option value="CANCELLED">Cancelled</option>
+                                <label for="editVenueId" class="form-label">Venue *</label>
+                                <select class="form-select" id="editVenueId" name="venueId" required>
+                                    <option value="">Select a venue</option>
+                                    <c:forEach var="venue" items="${venues}">
+                                        <option value="${venue.id}">${venue.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -737,24 +694,25 @@
                                 <input type="datetime-local" class="form-control" id="editStartAt" name="startAt" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editEndAt" class="form-label">End Date & Time (Optional)</label>
+                                <label for="editEndAt" class="form-label">End Date & Time</label>
                                 <input type="datetime-local" class="form-control" id="editEndAt" name="endAt">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="editMinAge" class="form-label">Minimum Age *</label>
-                                <input type="number" class="form-control" id="editMinAge" name="minAge" min="0" max="100" required>
+                                <label for="editStatus" class="form-label">Status</label>
+                                <select class="form-select" id="editStatus" name="status">
+                                    <option value="DRAFT">Draft</option>
+                                    <option value="ONSALE">On Sale</option>
+                                    <option value="SOLDOUT">Sold Out</option>
+                                    <option value="CLOSED">Closed</option>
+                                    <option value="CANCELLED">Cancelled</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editVenueId" class="form-label">Venue *</label>
-                                <select class="form-select" id="editVenueId" name="venueId" required>
-                                    <option value="">Select a venue</option>
-                                    <c:forEach var="venue" items="${venues}">
-                                        <option value="${venue.id}">${venue.name} - ${venue.city}</option>
-                                    </c:forEach>
-                                </select>
+                                <label for="editMinAge" class="form-label">Minimum Age *</label>
+                                <input type="number" class="form-control" id="editMinAge" name="minAge" min="0" max="100" required>
                             </div>
                         </div>
                     </div>
@@ -774,23 +732,11 @@
         function editEvent(eventId, name, description, startAt, endAt, status, minAge, venueId) {
             document.getElementById('editEventId').value = eventId;
             document.getElementById('editName').value = name;
-            document.getElementById('editDescription').value = description || '';
-            
-            // Format datetime for datetime-local input
-            if (startAt) {
-                const formattedStartAt = startAt.replace(' ', 'T').substring(0, 16);
-                document.getElementById('editStartAt').value = formattedStartAt;
-            }
-            
-            if (endAt) {
-                const formattedEndAt = endAt.replace(' ', 'T').substring(0, 16);
-                document.getElementById('editEndAt').value = formattedEndAt;
-            } else {
-                document.getElementById('editEndAt').value = '';
-            }
-            
+            document.getElementById('editDescription').value = description;
+            document.getElementById('editStartAt').value = startAt;
+            document.getElementById('editEndAt').value = endAt || '';
             document.getElementById('editStatus').value = status;
-            document.getElementById('editMinAge').value = (minAge && minAge !== 'null') ? minAge : '';
+            document.getElementById('editMinAge').value = minAge;
             document.getElementById('editVenueId').value = venueId;
         }
     </script>

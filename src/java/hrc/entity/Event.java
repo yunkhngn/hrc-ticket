@@ -12,6 +12,7 @@ public class Event {
     private String status;
     private Integer minAge;
     private LocalDateTime createdAt;
+    private String venueName; // For display purposes
     
     public Event() {}
     
@@ -98,5 +99,13 @@ public class Event {
     
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+    
+    public String getVenueName() {
+        return venueName;
+    }
+    
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 }
