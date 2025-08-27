@@ -973,6 +973,9 @@
                                 </a>
                             </c:if>
                             <c:if test="${sessionScope.userRole eq 'ADMIN' || sessionScope.userRole eq 'STAFF'}">
+                                <a href="${pageContext.request.contextPath}/admin" class="user-link">
+                                    <i class="bi bi-speedometer2"></i> Admin Dashboard
+                                </a>
                                 <a href="${pageContext.request.contextPath}/admin/orders" class="user-link">
                                     <i class="bi bi-gear"></i> Quản Lý Đơn Hàng
                                 </a>

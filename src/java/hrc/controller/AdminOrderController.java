@@ -31,9 +31,18 @@ public class AdminOrderController extends HttpServlet {
             return;
         }
         
-        // List all orders for admin
-        List<Order> orders = orderService.getAllOrders();
-        request.setAttribute("orders", orders);
+        try {
+            // List all orders for admin
+            List<Order> orders = orderService.getAllOrders();
+            request.setAttribute("orders", orders);
+            
+            // Debug: log the number of orders
+            System.out.println("AdminOrderController: Found " + (orders != null ? orders.size() : 0) + " orders");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error loading orders: " + e.getMessage());
+            request.setAttribute("orders", new java.util.ArrayList<>());
+        }
         
         // Pass through any success/error messages
         String success = request.getParameter("success");

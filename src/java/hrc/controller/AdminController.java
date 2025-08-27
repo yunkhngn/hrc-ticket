@@ -53,8 +53,14 @@ public class AdminController extends HttpServlet {
         request.setAttribute("totalEvents", totalEvents);
         request.setAttribute("totalOrders", totalOrders);
         request.setAttribute("pendingOrders", pendingOrders);
-        request.setAttribute("recentOrders", orders.subList(0, Math.min(5, orders.size())));
-        request.setAttribute("recentEvents", events.subList(0, Math.min(5, events.size())));
+        
+        // Get recent orders (up to 5)
+        List<Order> recentOrders = orders.size() > 5 ? orders.subList(0, 5) : orders;
+        request.setAttribute("recentOrders", recentOrders);
+        
+        // Get recent events (up to 5)
+        List<Event> recentEvents = events.size() > 5 ? events.subList(0, 5) : events;
+        request.setAttribute("recentEvents", recentEvents);
         
         request.getRequestDispatcher("/WEB-INF/views/admin/dashboard.jsp").forward(request, response);
     }
