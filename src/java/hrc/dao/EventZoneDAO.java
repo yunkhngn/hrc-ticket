@@ -50,7 +50,11 @@ public class EventZoneDAO {
     }
     
     public EventZone findById(Long id) {
-        String sql = "SELECT id, event_id, venue_zone_id, currency, price, fee, allocation FROM EventZones WHERE id = ?";
+        String sql = "SELECT ez.id, ez.event_id, ez.venue_zone_id, ez.currency, ez.price, ez.fee, ez.allocation, " +
+                     "vz.name as venue_zone_name, vz.capacity as venue_zone_capacity " +
+                     "FROM EventZones ez " +
+                     "LEFT JOIN VenueZones vz ON ez.venue_zone_id = vz.id " +
+                     "WHERE ez.id = ?";
         
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -67,6 +71,8 @@ public class EventZoneDAO {
                     eventZone.setPrice(rs.getBigDecimal("price"));
                     eventZone.setFee(rs.getBigDecimal("fee"));
                     eventZone.setAllocation(rs.getInt("allocation"));
+                    eventZone.setVenueZoneName(rs.getString("venue_zone_name"));
+                    eventZone.setVenueZoneCapacity(rs.getInt("venue_zone_capacity"));
                     
                     return eventZone;
                 }

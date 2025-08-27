@@ -17,6 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "OrderDetailController", urlPatterns = {"/order-detail"})
 public class OrderDetailController extends HttpServlet {
@@ -89,12 +91,13 @@ public class OrderDetailController extends HttpServlet {
             }
             
             // Get event zone information for each order item
+            Map<Long, String> eventZoneNames = new HashMap<>();
             for (OrderItem item : orderItems) {
                 EventZone eventZone = eventZoneDAO.findById(item.getEventZoneId());
                 if (eventZone != null) {
-                    // Add event zone name to the item (we'll need to extend OrderItem or use a different approach)
-                    // For now, we'll store it in request attributes
-                    request.setAttribute("eventZone_" + item.getId(), eventZone.getName());
+                    eventZoneNames.put(item.getId(), eventZone.getVenueZoneName());
+                } else {
+                    eventZoneNames.put(item.getId(), "Unknown Zone");
                 }
             }
             
@@ -102,6 +105,7 @@ public class OrderDetailController extends HttpServlet {
             request.setAttribute("orderItems", orderItems);
             request.setAttribute("customerName", customerName);
             request.setAttribute("confirmedByName", confirmedByName);
+            request.setAttribute("eventZoneNames", eventZoneNames);
             
             // Pass through any success/error messages
             String success = request.getParameter("success");
