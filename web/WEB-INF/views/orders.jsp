@@ -621,7 +621,7 @@
                              </div>
                             
                             <div class="order-actions">
-                                <a href="${pageContext.request.contextPath}/order?id=${order.id}" class="btn btn-primary">
+                                <a href="${pageContext.request.contextPath}/order-detail?id=${order.id}" class="btn btn-primary">
                                     <i class="bi bi-eye"></i> Xem Chi Tiết
                                 </a>
                                 

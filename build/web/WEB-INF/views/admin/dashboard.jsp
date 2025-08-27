@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Hanoi Rock City</title>
+    <title>${sessionScope.userRole eq 'ADMIN' ? 'Admin' : 'Staff'} Dashboard - Hanoi Rock City</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
@@ -24,8 +24,8 @@
         .admin-header {
             background: linear-gradient(135deg, var(--hrc-dark), var(--hrc-gray));
             color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
         }
         
         .admin-header h1 {
@@ -42,11 +42,12 @@
         
         .stats-card {
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             border-left: 4px solid var(--hrc-red);
             transition: transform 0.3s ease;
+            margin-bottom: 1.5rem;
         }
         
         .stats-card:hover {
@@ -56,14 +57,14 @@
         .stats-icon {
             font-size: 2.5rem;
             color: var(--hrc-red);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .stats-number {
             font-size: 2rem;
             font-weight: 700;
             color: var(--hrc-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .stats-label {
@@ -75,24 +76,24 @@
         
         .quick-actions {
             background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
         }
         
         .action-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             background: linear-gradient(135deg, var(--hrc-red), #c0392b);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
-            margin: 0.25rem;
+            margin: 0.5rem;
         }
         
         .action-btn:hover {
@@ -104,25 +105,25 @@
         
         .recent-section {
             background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
         }
         
         .recent-section h3 {
             color: var(--hrc-dark);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             border-bottom: 2px solid var(--hrc-red);
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
         }
         
         .recent-item {
-            padding: 1rem;
+            padding: 1.5rem;
             border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
             transition: background-color 0.3s ease;
         }
         
@@ -132,12 +133,12 @@
         
         .recent-item h5 {
             color: var(--hrc-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .recent-item p {
             color: #666;
-            margin: 0;
+            margin: 0 0 0.75rem 0;
             font-size: 0.9rem;
         }
         
@@ -167,7 +168,7 @@
         
         .navbar {
             background: var(--hrc-dark);
-            padding: 1rem 0;
+            padding: 1.5rem 0;
         }
         
         .navbar-brand {
@@ -191,8 +192,8 @@
             background: var(--hrc-red);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
@@ -208,7 +209,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">
-                <i class="bi bi-gear-fill"></i> HRC Admin
+                <i class="bi bi-gear-fill"></i> HRC ${sessionScope.userRole eq 'ADMIN' ? 'Admin' : 'Staff'}
             </a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="${pageContext.request.contextPath}/admin/events">
@@ -242,12 +243,12 @@
     <!-- Header -->
     <div class="admin-header">
         <div class="container">
-            <h1><i class="bi bi-speedometer2"></i> Admin Dashboard</h1>
+            <h1><i class="bi bi-speedometer2"></i> ${sessionScope.userRole eq 'ADMIN' ? 'Admin' : 'Staff'} Dashboard</h1>
             <p>Welcome back! Here's what's happening with Hanoi Rock City</p>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 3rem;">
         <!-- Statistics Cards -->
         <div class="row mb-4">
             <div class="col-md-3">
@@ -330,7 +331,7 @@
                                     <span class="status-badge status-pending">${order.paymentStatus}</span>
                                 </p>
                                 <p><strong>Date:</strong> ${order.createdAt}</p>
-                                <a href="${pageContext.request.contextPath}/admin/orders" class="btn btn-sm btn-outline-primary">
+                                <a href="${pageContext.request.contextPath}/order-detail?id=${order.id}" class="btn btn-sm btn-outline-primary">
                                     View Details
                                 </a>
                             </div>

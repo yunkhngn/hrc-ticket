@@ -32,6 +32,8 @@ public class AuthFilter implements Filter {
         // Check if accessing admin pages
         boolean isAdminPage = requestURI.startsWith(contextPath + "/admin/");
         
+
+        
         // Check if accessing customer-only pages (cart and checkout)
         boolean isCustomerOnlyPage = requestURI.startsWith(contextPath + "/cart") || 
                                    requestURI.startsWith(contextPath + "/checkout");

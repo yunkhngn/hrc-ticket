@@ -313,7 +313,7 @@
         </div>
     </div>
     
-    <div class="container">
+    <div class="container" style="margin-bottom: 100px;">
         <!-- Success/Error Messages -->
         <c:if test="${not empty success}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -490,7 +490,7 @@
 
     <!-- Create Promo Code Modal -->
     <div class="modal fade" id="createModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Create New Promo Code</h5>
@@ -500,61 +500,103 @@
                     <div class="modal-body">
                         <input type="hidden" name="action" value="create">
                         
-                        <div class="row">
+                        <!-- Basic Information Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3"><i class="bi bi-info-circle"></i> Basic Information</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="code" class="form-label">Promo Code</label>
-                                <input type="text" class="form-control" id="code" name="code" required style="text-transform: uppercase;">
+                                <label for="code" class="form-label">
+                                    <i class="bi bi-tag"></i> Promo Code <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="code" name="code" required 
+                                       style="text-transform: uppercase;" placeholder="Enter promo code">
+                                <div class="form-text">Code will be automatically converted to uppercase</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="discountType" class="form-label">Discount Type</label>
+                                <label for="discountType" class="form-label">
+                                    <i class="bi bi-percent"></i> Discount Type <span class="text-danger">*</span>
+                                </label>
                                 <select class="form-control" id="discountType" name="discountType" required>
                                     <option value="">Select discount type</option>
                                     <option value="PERCENTAGE">Percentage (%)</option>
                                     <option value="FIXED_AMOUNT">Fixed Amount ($)</option>
                                 </select>
                             </div>
-                        </div>
-                        
-                        <div class="row">
+                            
                             <div class="col-md-6 mb-3">
-                                <label for="discountValue" class="form-label">Discount Value</label>
-                                <input type="number" class="form-control" id="discountValue" name="discountValue" min="0" step="0.01" required>
+                                <label for="discountValue" class="form-label">
+                                    <i class="bi bi-currency-dollar"></i> Discount Value <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control" id="discountValue" name="discountValue" 
+                                       min="0" step="0.01" required placeholder="0.00">
+                                <div class="form-text">Enter the discount amount or percentage</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="maxUses" class="form-label">Maximum Uses (Optional)</label>
-                                <input type="number" class="form-control" id="maxUses" name="maxUses" min="1">
+                                <label for="minOrderAmount" class="form-label">
+                                    <i class="bi bi-cart-check"></i> Minimum Order Amount
+                                </label>
+                                <input type="number" class="form-control" id="minOrderAmount" name="minOrderAmount" 
+                                       min="0" step="0.01" placeholder="0.00">
+                                <div class="form-text">Leave empty for no minimum requirement</div>
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <!-- Usage Limits Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-success mb-3"><i class="bi bi-shield-check"></i> Usage Limits</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="perCustomerLimit" class="form-label">Per Customer Limit (Optional)</label>
-                                <input type="number" class="form-control" id="perCustomerLimit" name="perCustomerLimit" min="1">
+                                <label for="maxUses" class="form-label">
+                                    <i class="bi bi-people"></i> Maximum Uses
+                                </label>
+                                <input type="number" class="form-control" id="maxUses" name="maxUses" 
+                                       min="1" placeholder="Unlimited">
+                                <div class="form-text">Leave empty for unlimited uses</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="minOrderAmount" class="form-label">Minimum Order Amount (Optional)</label>
-                                <input type="number" class="form-control" id="minOrderAmount" name="minOrderAmount" min="0" step="0.01">
+                                <label for="perCustomerLimit" class="form-label">
+                                    <i class="bi bi-person-check"></i> Per Customer Limit
+                                </label>
+                                <input type="number" class="form-control" id="perCustomerLimit" name="perCustomerLimit" 
+                                       min="1" placeholder="Unlimited">
+                                <div class="form-text">Leave empty for unlimited uses per customer</div>
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <!-- Validity Period Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-warning mb-3"><i class="bi bi-calendar-range"></i> Validity Period</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="startAt" class="form-label">Valid From (Optional)</label>
+                                <label for="startAt" class="form-label">
+                                    <i class="bi bi-calendar-event"></i> Valid From
+                                </label>
                                 <input type="datetime-local" class="form-control" id="startAt" name="startAt">
+                                <div class="form-text">Leave empty to start immediately</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="endAt" class="form-label">Valid Until (Optional)</label>
+                                <label for="endAt" class="form-label">
+                                    <i class="bi bi-calendar-x"></i> Valid Until
+                                </label>
                                 <input type="datetime-local" class="form-control" id="endAt" name="endAt">
+                                <div class="form-text">Leave empty for no expiration</div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">Create Promo Code</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Create Promo Code
+                        </button>
                     </div>
                 </form>
             </div>
@@ -563,7 +605,7 @@
     
     <!-- Edit Promo Code Modal -->
     <div class="modal fade" id="editModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="bi bi-pencil"></i> Edit Promo Code</h5>
@@ -574,61 +616,103 @@
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" id="editPromoCodeId" name="promoCodeId">
                         
-                        <div class="row">
+                        <!-- Basic Information Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3"><i class="bi bi-info-circle"></i> Basic Information</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editCode" class="form-label">Promo Code</label>
-                                <input type="text" class="form-control" id="editCode" name="code" required style="text-transform: uppercase;">
+                                <label for="editCode" class="form-label">
+                                    <i class="bi bi-tag"></i> Promo Code <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="editCode" name="code" required 
+                                       style="text-transform: uppercase;" placeholder="Enter promo code">
+                                <div class="form-text">Code will be automatically converted to uppercase</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="editDiscountType" class="form-label">Discount Type</label>
+                                <label for="editDiscountType" class="form-label">
+                                    <i class="bi bi-percent"></i> Discount Type <span class="text-danger">*</span>
+                                </label>
                                 <select class="form-control" id="editDiscountType" name="discountType" required>
                                     <option value="">Select discount type</option>
                                     <option value="PERCENTAGE">Percentage (%)</option>
                                     <option value="FIXED_AMOUNT">Fixed Amount ($)</option>
                                 </select>
                             </div>
-                        </div>
-                        
-                        <div class="row">
+                            
                             <div class="col-md-6 mb-3">
-                                <label for="editDiscountValue" class="form-label">Discount Value</label>
-                                <input type="number" class="form-control" id="editDiscountValue" name="discountValue" min="0" step="0.01" required>
+                                <label for="editDiscountValue" class="form-label">
+                                    <i class="bi bi-currency-dollar"></i> Discount Value <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control" id="editDiscountValue" name="discountValue" 
+                                       min="0" step="0.01" required placeholder="0.00">
+                                <div class="form-text">Enter the discount amount or percentage</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="editMaxUses" class="form-label">Maximum Uses (Optional)</label>
-                                <input type="number" class="form-control" id="editMaxUses" name="maxUses" min="1">
+                                <label for="editMinOrderAmount" class="form-label">
+                                    <i class="bi bi-cart-check"></i> Minimum Order Amount
+                                </label>
+                                <input type="number" class="form-control" id="editMinOrderAmount" name="minOrderAmount" 
+                                       min="0" step="0.01" placeholder="0.00">
+                                <div class="form-text">Leave empty for no minimum requirement</div>
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <!-- Usage Limits Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-success mb-3"><i class="bi bi-shield-check"></i> Usage Limits</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editPerCustomerLimit" class="form-label">Per Customer Limit (Optional)</label>
-                                <input type="number" class="form-control" id="editPerCustomerLimit" name="perCustomerLimit" min="1">
+                                <label for="editMaxUses" class="form-label">
+                                    <i class="bi bi-people"></i> Maximum Uses
+                                </label>
+                                <input type="number" class="form-control" id="editMaxUses" name="maxUses" 
+                                       min="1" placeholder="Unlimited">
+                                <div class="form-text">Leave empty for unlimited uses</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="editMinOrderAmount" class="form-label">Minimum Order Amount (Optional)</label>
-                                <input type="number" class="form-control" id="editMinOrderAmount" name="minOrderAmount" min="0" step="0.01">
+                                <label for="editPerCustomerLimit" class="form-label">
+                                    <i class="bi bi-person-check"></i> Per Customer Limit
+                                </label>
+                                <input type="number" class="form-control" id="editPerCustomerLimit" name="perCustomerLimit" 
+                                       min="1" placeholder="Unlimited">
+                                <div class="form-text">Leave empty for unlimited uses per customer</div>
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <!-- Validity Period Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-warning mb-3"><i class="bi bi-calendar-range"></i> Validity Period</h6>
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editStartAt" class="form-label">Valid From (Optional)</label>
+                                <label for="editStartAt" class="form-label">
+                                    <i class="bi bi-calendar-event"></i> Valid From
+                                </label>
                                 <input type="datetime-local" class="form-control" id="editStartAt" name="startAt">
+                                <div class="form-text">Leave empty to start immediately</div>
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label for="editEndAt" class="form-label">Valid Until (Optional)</label>
+                                <label for="editEndAt" class="form-label">
+                                    <i class="bi bi-calendar-x"></i> Valid Until
+                                </label>
                                 <input type="datetime-local" class="form-control" id="editEndAt" name="endAt">
+                                <div class="form-text">Leave empty for no expiration</div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Update Promo Code</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Update Promo Code
+                        </button>
                     </div>
                 </form>
             </div>

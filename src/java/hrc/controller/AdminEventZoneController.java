@@ -37,8 +37,8 @@ public class AdminEventZoneController extends HttpServlet {
         HttpSession session = request.getSession();
         String userRole = (String) session.getAttribute("userRole");
         
-        if (!"ADMIN".equals(userRole)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Admin access required");
+        if (!"ADMIN".equals(userRole) && !"STAFF".equals(userRole)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Admin or Staff access required");
             return;
         }
         
@@ -113,8 +113,8 @@ public class AdminEventZoneController extends HttpServlet {
         HttpSession session = request.getSession();
         String userRole = (String) session.getAttribute("userRole");
         
-        if (!"ADMIN".equals(userRole)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Admin access required");
+        if (!"ADMIN".equals(userRole) && !"STAFF".equals(userRole)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Admin or Staff access required");
             return;
         }
         

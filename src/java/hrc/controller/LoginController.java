@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("userEmail", user.getEmail());
             session.setAttribute("userName", user.getFullName());
             
-            if ("ADMIN".equals(user.getRole())) {
+            if ("ADMIN".equals(user.getRole()) || "STAFF".equals(user.getRole())) {
                 response.sendRedirect(request.getContextPath() + "/admin");
             } else {
                 response.sendRedirect(request.getContextPath() + "/events");
